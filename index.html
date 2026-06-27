@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Annie KaiyDee POS — ລະບົບຈັດການຮ້ານ ຄົບ ຈົບ ໃນແອັບດຽວ</title>
-    <meta name="description" content="ລະບົບ POS Cloud ສຳລັບຮ້ານກາເຟ ແລະ ຮ້ານອາຫານ — ຂາຍໜ້າຮ້ານ, QR Menu, Delivery, ສະຕັອກ, ສະມາຊິກ, ລາຍງານກຳໄລ ແລະ AI ຜູ້ຊ່ວຍຮ້ານ. ທົດລອງຟຣີ 7 ມື້.">
+    <meta name="description" content="ລະບົບ POS Cloud ສຳລັບຮ້ານກາເຟ, ອາຫານ, ຂາຍຍາ, ຂອງຊຳ, ເສື້ອຜ້າ ແລະ ໄອທີ/ມືຖື — ຂາຍໜ້າຮ້ານ, QR Menu, Delivery, ສະຕັອກ+ບາໂຄດ, IMEI+ປະກັນ, ໃບ A4/ເສนอราคา, ຕິດໜີ້, ສະມາຊິກ, ລາຍງານກຳໄລ ແລະ AI ຜູ້ຊ່ວຍຮ້ານ. ທົດລອງຟຣີ 7 ມື້.">
+    <link rel="icon" type="image/png" href="assets/app-icon.png">
+    <link rel="apple-touch-icon" href="assets/app-icon.png">
+    <meta property="og:title" content="Annie KaiyDee POS — ລະບົບຈັດການຮ້ານ ຄົບ ຈົບ ໃນແອັບດຽວ">
+    <meta property="og:description" content="POS Cloud ສຳລັບທຸກປະເພດຮ້ານ · ໄອທີ/ມືຖື IMEI+ປະກັນ · ໃບ A4/ເສนอราคา · ທົດລອງຟຣີ 7 ມື້">
+    <meta property="og:image" content="assets/promo.png">
+    <meta property="og:type" content="website">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;600;700;800&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -14,7 +20,7 @@
     <nav class="navbar">
         <div class="container nav-content">
             <div class="logo">
-                <i data-lucide="store" class="logo-icon"></i>
+                <img src="assets/app-icon.png" class="logo-img" alt="Annie KaiyDee POS">
                 <span>Annie KaiyDee</span>
             </div>
             <div class="nav-links">
@@ -105,6 +111,24 @@
         <span>ໂປຣເປີດໂຕ · ສະເພາະ 30 ຮ້ານທຳອິດ — ຈ່າຍ <u>690,000</u> ແທນ 990,000 ກີບ/ປີ</span>
     </div>
 
+    <!-- Promo poster showcase -->
+    <section class="promo-showcase">
+        <div class="container">
+            <div class="section-header">
+                <h2>ໂປຣເປີດໂຕ · ສະເພາະ 30 ຮ້ານທຳອິດ</h2>
+                <p>ຂາຍດີ... ກຳໄລເພີ່ມ! ໃຊ້ໄດ້ທຸກປະເພດຮ້ານ · ທົດລອງຟຣີ 7 ມື້</p>
+            </div>
+            <div class="promo-frame">
+                <img src="assets/promo.png" alt="Annie KaiyDee POS — ໂປຣເປີດໂຕ 690,000 ກີບ/ປີ" loading="lazy"
+                     onerror="this.closest('.promo-showcase').style.display='none'">
+            </div>
+            <div class="promo-actions">
+                <a href="https://annie-kaiydee-pos.firebaseapp.com/annie_kaiydee.apk" class="btn btn-primary btn-lg"><i data-lucide="smartphone" style="width:20px;height:20px;"></i> ດາວໂຫຼດ Android</a>
+                <a href="https://annie-kaiydee-pos.firebaseapp.com/AnnieKaiyDee_Setup.exe" class="btn btn-primary btn-lg"><i data-lucide="monitor" style="width:20px;height:20px;"></i> ດາວໂຫຼດ Windows PC</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Features -->
     <section id="features" class="features">
         <div class="container">
@@ -141,7 +165,27 @@
                 <div class="feature-card">
                     <div class="feature-icon"><i data-lucide="sparkles"></i></div>
                     <h3>AI ຜູ້ຊ່ວຍຮ້ານ</h3>
-                    <p>ຖາມ AI ເລື່ອງຍອດຂາຍ/ກຳໄລ ໄດ້ເປັນພາສາລາວ ແລະ ສະແກນເມນູດ້ວຍກ້ອງ → ສ້າງສິນຄ້າທັນທີ.</p>
+                    <p>ຖາມ AI ເລື່ອງຍອດຂາຍ/ກຳໄລ ໄດ້ເປັນພາສາລາວ ແລະ ສະແກນເມນູດ້ວຍກ້ອງ/PDF → ສ້າງສິນຄ້າທັນທີ.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="smartphone-charging"></i></div>
+                    <h3>ໄອທີ / ມືຖື · IMEI + ປະກັນ</h3>
+                    <p>ໂໝດຂາຍ <b>ໄອທີ/ອຸປະກອນ</b> — ບັນທຶກ IMEI/Serial ລາຍເครื่อง, ໃສ່ສະເປກ, ຕິດຕາມການຮັບປະກັນ ແລະ ສະແກນ IMEI ຂາຍໄດ້ເລີຍ.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="file-text"></i></div>
+                    <h3>ໃບ A4 / ເສนอราคา (PDF)</h3>
+                    <p>ອອກ <b>ໃບສະເໜີລາຄາ · ໃບເກັບເງິນ · ໃບສົ່ງເครื่อง</b> ແບບ A4 — ພິມ ຫຼື ບັນທຶກ PDF ສົ່ງໃຫ້ລູກຄ້າ (VAT ໄດ້).</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="hand-coins"></i></div>
+                    <h3>ຕິດໜີ້ / ຂາຍເชื่อ</h3>
+                    <p>ຮັບມັດຈຳ, ຜູກໜີ້ກັບລູກຄ້າ, ໜ້າລູກໜີ້ + ຮັບชำระ — ແຍກ <b>ເງິນສົດທີ່ໄດ້ຮັບ</b> ກັບ <b>ໜີ້ຄ້າງ</b> ຊັດເຈນ.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i data-lucide="barcode"></i></div>
+                    <h3>ບາໂຄດ + ປ້າຍລາຄາ</h3>
+                    <p>ສ້າງ/ພິມ <b>ປ້າຍບາໂຄດ</b> ເອງ (ເລືອກຈຳນວນ, ຫຼາຍລາຍການ) ແລະ <b>ຍິງບາໂຄດເຂົ້າກະຕ້າ</b> ໄດ້ທັນທີຢູ່ໜ້າຂາຍ.</p>
                 </div>
             </div>
         </div>
@@ -196,11 +240,14 @@
                     <ul class="pricing-features">
                         <li><i data-lucide="check-circle-2"></i> <b>ຂາຍໜ້າຮ້ານ + ພິມໃບບິນ Bluetooth</b></li>
                         <li><i data-lucide="check-circle-2"></i> <b>QR Menu · ລູກຄ້າສັ່ງຜ່ານເວັບ + Delivery</b></li>
-                        <li><i data-lucide="check-circle-2"></i> ຈັດການສະຕັອກ + ຄຳນວນຕົ້ນທຶນ/ກຳໄລ</li>
+                        <li><i data-lucide="check-circle-2"></i> ຈັດການສະຕັອກ + ບາໂຄດ + ຄຳນວນກຳໄລ</li>
+                        <li><i data-lucide="check-circle-2"></i> <b>ໄອທີ/ມືຖື · IMEI + ປະກັນ + ສະເປກ</b></li>
+                        <li><i data-lucide="check-circle-2"></i> <b>ໃບ A4 ເສนอราคา/ເກັບເງິນ/ສົ່ງເครื่อง (PDF)</b></li>
+                        <li><i data-lucide="check-circle-2"></i> ຕິດໜີ້/ຂາຍເชื่อ + ມັດຈຳ · ໜ້າລູກໜີ້</li>
                         <li><i data-lucide="check-circle-2"></i> ລາຍງານ Cloud · ຫຼາຍສາຂາ · ຫຼາຍເຄື່ອງ</li>
                         <li><i data-lucide="check-circle-2"></i> ສະມາຊິກ + ສະສົມແຕ້ມ + Lucky Spin</li>
                         <li><i data-lucide="check-circle-2"></i> ໂປຣໂມຊັນ (ຊື້1ແຖມ1, ສ່ວນຫຼຸດ)</li>
-                        <li><i data-lucide="check-circle-2"></i> <b>AI ຜູ້ຊ່ວຍຮ້ານ + ສະແກນເມນູ</b></li>
+                        <li><i data-lucide="check-circle-2"></i> <b>AI ຜູ້ຊ່ວຍຮ້ານ + ສະແກນເມນູ (PDF/ຮູບ)</b></li>
                         <li><i data-lucide="check-circle-2"></i> ອັບເດດຟຣີ + ຊ່ວຍຕັ້ງຄ່າໃຫ້</li>
                     </ul>
                     <div class="pricing-cta">
