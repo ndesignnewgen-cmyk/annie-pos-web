@@ -117,7 +117,7 @@ h1, h2, h3 { font-weight: 800; line-height: 1.18; letter-spacing: -0.01em; color
 
 /* ===== Hero ===== */
 .hero {
-    padding: 150px 0 90px;
+    padding: 36px 0 80px;
     background: radial-gradient(1100px 520px at 80% -5%, var(--bg-warm-2) 0%, rgba(255,243,230,0) 60%), var(--bg);
 }
 .hero-content {
@@ -340,6 +340,15 @@ h1, h2, h3 { font-weight: 800; line-height: 1.18; letter-spacing: -0.01em; color
 }
 .footer-bottom a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; opacity: 0.6; }
 
+/* ===== Cover banner ===== */
+.cover-banner { padding: 88px 0 8px; background: var(--bg); }
+.cover-banner img {
+    width: 100%; height: auto; display: block;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+}
+
 /* ===== Shop types ===== */
 .shop-types { padding: 80px 0; background: var(--bg); }
 .shop-chips {
@@ -431,7 +440,8 @@ h1, h2, h3 { font-weight: 800; line-height: 1.18; letter-spacing: -0.01em; color
 }
 @media (max-width: 768px) {
     .nav-links a:not(.btn) { display: none; }
-    .hero { padding: 120px 0 70px; }
+    .hero { padding: 24px 0 60px; }
+    .cover-banner { padding: 78px 0 4px; }
     .hero h1 { font-size: 2.3rem; }
     .section-header h2 { font-size: 2rem; }
     .contact-methods { flex-direction: column; }
