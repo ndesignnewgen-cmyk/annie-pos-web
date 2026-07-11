@@ -3,394 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Annie KaiyDee - Invoice Generator</title>
-    <!-- Google Fonts -->
+    <title>Annie KaiyDee — ໃບສະເໜີລາຄາ / ໃບແຈ້ງໜີ້ / ໃບສັນຍາ</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #F57C00;
+            --primary-dark: #e65100;
             --primary-light: #fff3e0;
             --dark: #1f2937;
             --gray: #6b7280;
             --border: #e5e7eb;
         }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Noto Sans Lao', sans-serif; }
+        body { background:#f3f4f6; color:var(--dark); display:flex; flex-direction:column; align-items:center; padding:2rem; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Noto Sans Lao', sans-serif;
-        }
-
-        body {
-            background-color: #f3f4f6;
-            color: var(--dark);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        /* Controls / No Print section */
+        /* Controls (no print) */
         .controls {
-            background: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-            width: 210mm;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            background:white; padding:1rem 1.5rem; border-radius:10px;
+            box-shadow:0 2px 8px rgba(0,0,0,0.06); margin-bottom:2rem; width:210mm;
+            display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem;
         }
+        .btn { background:var(--primary); color:white; border:none; padding:0.55rem 1.1rem; border-radius:6px; font-weight:600; cursor:pointer; font-size:0.9rem; transition:0.2s; }
+        .btn:hover { background:var(--primary-dark); }
+        .btn-outline { background:transparent; border:1px solid var(--primary); color:var(--primary); }
+        .btn-danger { background:#ef4444; color:white; border:none; padding:0.2rem 0.5rem; border-radius:4px; cursor:pointer; }
+        select { padding:0.5rem; border-radius:6px; border:1px solid var(--border); font-size:0.9rem; font-weight:600; }
 
-        .btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            font-weight: 500;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: 0.2s;
-        }
-        .btn:hover { background-color: #e65100; }
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-        }
-        .btn-danger { background-color: #ef4444; color: white; border:none; padding: 0.25rem 0.5rem;}
-        
-        select {
-            padding: 0.4rem;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            font-size: 0.9rem;
-        }
-
-        /* A4 Page styling */
+        /* A4 page — min-height so a long ໃບສັນຍາ can flow to 2 pages */
         .page {
-            background: white;
-            width: 210mm;
-            height: 297mm; /* Strictly A4 height */
-            padding: 15mm 20mm; /* Balanced padding */
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden; /* Prevent overflow */
+            background:white; width:210mm; min-height:297mm; padding:15mm 18mm;
+            box-shadow:0 10px 25px rgba(0,0,0,0.1); display:flex; flex-direction:column; position:relative;
         }
 
         /* Header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 30px;
-        }
-
-        .company-brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            object-fit: cover;
-        }
-
-        .company-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 2px;
-        }
-
-        .company-details {
-            font-size: 0.8rem;
-            color: var(--gray);
-            line-height: 1.4;
-        }
-
+        .header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:26px; }
+        .company-brand { display:flex; align-items:center; gap:15px; }
+        .logo-img { width:64px; height:64px; border-radius:14px; object-fit:cover; box-shadow:0 2px 6px rgba(0,0,0,0.12); }
+        .company-name { font-size:1.55rem; font-weight:700; color:var(--primary); margin-bottom:3px; line-height:1.1; }
+        .company-details { font-size:0.8rem; color:var(--gray); line-height:1.5; }
         .doc-title-input {
-            font-size: 2rem;
-            font-weight: 300;
-            color: var(--dark);
-            text-align: right;
-            border: none;
-            background: transparent;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            width: 250px;
-            outline: none;
+            font-size:1.9rem; font-weight:300; color:var(--dark); text-align:right; border:none;
+            background:transparent; letter-spacing:1px; width:290px; outline:none;
         }
 
-        /* Meta details */
-        .meta-details {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 30px;
-        }
+        .meta-details { display:flex; justify-content:space-between; margin-bottom:24px; gap:20px; }
+        .bill-to { width:52%; }
+        .section-label { font-size:0.72rem; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; }
+        .invoice-details table { width:100%; border-collapse:collapse; }
+        .invoice-details td { padding:4px 0; font-size:0.85rem; }
+        .invoice-details td:first-child { color:var(--gray); width:110px; }
+        .invoice-details input { text-align:right; font-weight:600; }
 
-        .bill-to {
-            width: 50%;
+        input.editable, textarea.editable, [contenteditable].editable {
+            width:100%; border:1px dashed transparent; padding:2px 3px; font-family:inherit; font-size:0.85rem;
+            color:var(--dark); background:transparent; resize:none; outline:none; border-radius:4px;
         }
+        input.editable:hover, textarea.editable:hover, [contenteditable].editable:hover,
+        input.editable:focus, textarea.editable:focus, [contenteditable].editable:focus { border-color:#ccc; background:#fafafa; }
+        .client-name { font-size:1.1rem !important; font-weight:600; color:var(--dark); }
 
-        .section-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
+        /* ໃບສັນຍາ intro (hidden unless Contract) */
+        .contract-intro { display:none; background:var(--primary-light); border-radius:10px; padding:12px 16px; margin-bottom:22px; }
+        .contract-intro .section-label { margin-bottom:8px; }
+        .party-row { display:flex; gap:10px; margin-bottom:6px; font-size:0.85rem; }
+        .party-row b { min-width:172px; color:var(--dark); }
+        body.contract-mode .contract-intro { display:block; }
 
-        .invoice-details table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .invoice-details td {
-            padding: 4px 0;
-            font-size: 0.85rem;
-        }
-        
-        .invoice-details td:first-child {
-            color: var(--gray);
-            width: 100px;
-        }
-        
-        .invoice-details input {
-            text-align: right;
-            font-weight: 500;
-        }
+        /* Items table */
+        .items-table { width:100%; border-collapse:collapse; margin-bottom:16px; border-top:2px solid var(--dark); }
+        .items-table th { text-align:left; padding:10px 5px; font-size:0.72rem; font-weight:700; color:var(--gray); text-transform:uppercase; border-bottom:1px solid var(--border); }
+        .items-table td { padding:8px 5px; border-bottom:1px solid var(--border); font-size:0.85rem; vertical-align:top; }
+        .items-table th:nth-child(1), .items-table td:nth-child(1){ width:45%; }
+        .items-table th:nth-child(2), .items-table td:nth-child(2){ width:20%; text-align:right; }
+        .items-table th:nth-child(3), .items-table td:nth-child(3){ width:10%; text-align:center; }
+        .items-table th:nth-child(4), .items-table td:nth-child(4){ width:20%; text-align:right; }
+        .items-table th:nth-child(5), .items-table td:nth-child(5){ width:5%; text-align:center; }
+        .items-table input.num-input { text-align:right; }
+        .items-table input.center-input { text-align:center; }
+        .row-total { font-weight:600; padding-top:10px !important; }
 
-        /* Editable fields */
-        input.editable, textarea.editable {
-            width: 100%;
-            border: 1px dashed transparent;
-            padding: 2px;
-            font-family: inherit;
-            font-size: 0.85rem;
-            color: var(--dark);
-            background: transparent;
-            resize: none;
-            outline: none;
-        }
-        
-        input.editable:hover, textarea.editable:hover,
-        input.editable:focus, textarea.editable:focus {
-            border-color: #ccc;
-            background: #fafafa;
-        }
+        .btn-add-row { align-self:flex-start; font-size:0.75rem; padding:5px 10px; margin-bottom:26px; color:var(--gray); border:1px dashed var(--gray); background:transparent; cursor:pointer; border-radius:5px; }
+        .btn-add-row:hover { background:#f3f4f6; }
 
-        .client-name {
-            font-size: 1.1rem !important;
-            font-weight: 600;
-            color: var(--dark);
-        }
+        .totals-section { display:flex; justify-content:flex-end; margin-bottom:26px; }
+        .totals-box { width:260px; }
+        .totals-box table { width:100%; border-collapse:collapse; }
+        .totals-box td { padding:6px 0; font-size:0.85rem; }
+        .totals-box td:first-child { color:var(--gray); }
+        .totals-box td:last-child { text-align:right; font-weight:600; }
+        .totals-box tr.grand-total td { border-top:1px solid var(--border); padding-top:10px; font-size:1.15rem; color:var(--primary); font-weight:700; }
 
-        /* Items Table */
-        .items-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            border-top: 2px solid var(--dark);
-        }
+        .footer-bottom { margin-top:auto; display:flex; flex-direction:column; width:100%; }
+        .notes-box { width:100%; }
+        .notes-box textarea { font-size:0.8rem; color:var(--gray); line-height:1.6; width:100%; }
+        .signature-area { display:flex; justify-content:space-between; padding:0 10px; }
+        .signature-box { width:200px; text-align:center; }
+        .signature-line { border-top:1px solid #9ca3af; margin-bottom:10px; }
+        .signature-box .sig-title { font-size:0.85rem; font-weight:600; color:var(--dark); margin-bottom:4px; }
+        .signature-box .sig-desc { font-size:0.75rem; color:#9ca3af; }
 
-        .items-table th {
-            text-align: left;
-            padding: 10px 5px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--gray);
-            text-transform: uppercase;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .items-table td {
-            padding: 8px 5px;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.85rem;
-            vertical-align: top;
-        }
-
-        .items-table th:nth-child(1), .items-table td:nth-child(1) { width: 45%; }
-        .items-table th:nth-child(2), .items-table td:nth-child(2) { width: 20%; text-align: right; }
-        .items-table th:nth-child(3), .items-table td:nth-child(3) { width: 10%; text-align: center; }
-        .items-table th:nth-child(4), .items-table td:nth-child(4) { width: 20%; text-align: right; }
-        .items-table th:nth-child(5), .items-table td:nth-child(5) { width: 5%; text-align: center; }
-
-        .items-table input.num-input { text-align: right; }
-        .items-table input.center-input { text-align: center; }
-
-        .row-total {
-            font-weight: 500;
-            padding-top: 10px !important; /* align with inputs */
-        }
-
-        /* Add row btn */
-        .btn-add-row {
-            align-self: flex-start;
-            font-size: 0.75rem;
-            padding: 4px 8px;
-            margin-bottom: 30px;
-            color: var(--gray);
-            border: 1px dashed var(--gray);
-            background: transparent;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        .btn-add-row:hover { background: #f3f4f6; }
-
-        /* Totals */
-        .totals-section {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 30px;
-        }
-
-        .totals-box {
-            width: 250px;
-        }
-
-        .totals-box table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .totals-box td {
-            padding: 6px 0;
-            font-size: 0.85rem;
-        }
-
-        .totals-box td:first-child {
-            color: var(--gray);
-        }
-
-        .totals-box td:last-child {
-            text-align: right;
-            font-weight: 500;
-        }
-
-        .totals-box tr.grand-total td {
-            border-top: 1px solid var(--border);
-            padding-top: 10px;
-            margin-top: 4px;
-            font-size: 1.1rem;
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        /* Footer / Notes */
-        .footer-bottom {
-            margin-top: auto; /* Pushes to bottom of A4 */
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .notes-box {
-            width: 100%;
-            margin-bottom: 60px;
-        }
-
-        .notes-box textarea {
-            font-size: 0.8rem;
-            color: var(--gray);
-            line-height: 1.5;
-            width: 100%;
-        }
-        
-        .signature-area {
-            display: flex;
-            justify-content: space-between;
-            padding: 0 10px;
-        }
-
-        .signature-box {
-            width: 180px;
-            text-align: center;
-        }
-
-        .signature-line {
-            border-top: 1px solid #9ca3af;
-            margin-bottom: 10px;
-        }
-
-        .signature-box .sig-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--dark);
-            margin-bottom: 4px;
-        }
-        
-        .signature-box .sig-desc {
-            font-size: 0.75rem;
-            color: #9ca3af;
-        }
-
-        /* Print styles */
         @media print {
-            @page {
-                size: A4;
-                margin: 0;
-            }
-            body {
-                background: white;
-                padding: 0;
-            }
-            .controls, .delete-col, .btn-add-row {
-                display: none !important;
-            }
-            .page {
-                box-shadow: none;
-                margin: 0;
-                padding: 15mm 20mm;
-                height: 297mm;
-            }
-            input.editable, textarea.editable {
-                border: none !important;
-                background: transparent !important;
-            }
-            .items-table th:nth-child(5), .items-table td:nth-child(5) {
-                display: none;
-            }
-            * {
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
-            }
+            @page { size:A4; margin:0; }
+            body { background:white; padding:0; }
+            .controls, .delete-col, .btn-add-row { display:none !important; }
+            .page { box-shadow:none; margin:0; }
+            input.editable, textarea.editable, [contenteditable].editable { border:none !important; background:transparent !important; }
+            .items-table th:nth-child(5), .items-table td:nth-child(5) { display:none; }
+            .contract-intro { background:var(--primary-light) !important; }
+            * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Controls / No Print -->
+    <!-- Controls (no print) -->
     <div class="controls">
-        <div style="display: flex; gap: 1rem; align-items: center;">
-            <span style="font-size: 0.9rem; font-weight: 500;">ປະເພດ:</span>
+        <div style="display:flex; gap:1rem; align-items:center;">
+            <span style="font-size:0.9rem; font-weight:600;">ປະເພດເອກະສານ:</span>
             <select id="docTypeSelect" onchange="changeDocType()">
-                <option value="ໃບສະເໜີລາຄາ">ໃບສະເໜີລາຄາ (Quotation)</option>
-                <option value="ໃບແຈ້ງໜີ້">ໃບແຈ້ງໜີ້ (Invoice)</option>
-                <option value="ໃບຮັບເງິນ">ໃບຮັບເງິນ (Receipt)</option>
+                <option value="quo">ໃບສະເໜີລາຄາ (Quotation)</option>
+                <option value="inv">ໃບແຈ້ງໜີ້ (Invoice)</option>
+                <option value="rec">ໃບຮັບເງິນ (Receipt)</option>
+                <option value="con">ໃບສັນຍາການໃຊ້ບໍລິການ (Contract)</option>
             </select>
         </div>
-        <button class="btn btn-outline" onclick="window.print()">
-            ພິມ / Save PDF
-        </button>
+        <button class="btn" onclick="window.print()">🖨️ ພິມ / Save PDF</button>
     </div>
 
     <datalist id="predefinedItems">
-        <option value="Software Only (POS + Web Menu) ຕະຫຼອດຊີບ">
-        <option value="Premium Bundle (Software + ປິນເຕີ + ລີ້ນຊັກ)">
-        <option value="ຈັກພິມບິນຄວາມຮ້ອນ Bluetooth 58mm">
-        <option value="ຈັກພິມບິນຄວາມຮ້ອນ Bluetooth/WiFi 80mm">
-        <option value="ລີ້ນຊັກເກັບເງິນອັດຕະໂນມັດ (Cash Drawer)">
+        <option value="Annie KaiyDee POS · ແພັກລາຍປີ (ໂປຣ 30 ຮ້ານທຳອິດ)">
+        <option value="Annie KaiyDee POS · ແພັກລາຍປີ (ລາຄາປົກກະຕິ)">
+        <option value="Annie KaiyDee POS · Lifetime (ໃຊ້ຕະຫຼອດ)">
+        <option value="ຈັກพิมบิลความร้อน Bluetooth 58mm">
+        <option value="ຈັກพิมบิลความร้อน Bluetooth/WiFi 80mm">
+        <option value="ລິ້ນຊັກເກັບເງິນອັດຕະໂນມັດ (Cash Drawer)">
         <option value="ຄ່າບໍລິການລົງຕັ້ງຄ່າລະບົບນອກສະຖານທີ່">
     </datalist>
 
@@ -399,14 +145,10 @@
         <!-- Header -->
         <div class="header">
             <div class="company-brand">
-                <img src="assets/logo.png" alt="Logo" class="logo-img">
+                <img src="assets/app-icon.png" alt="Logo" class="logo-img">
                 <div>
-                    <div class="company-name">Annie KhaiyDee POS</div>
-                    <div class="company-details">
-                        ບ້ານຈັດສັນ, ເມືອງນະຄອນປາກເຊ, ແຂວງຈຳປາສັກ<br>
-                        ໂທ: 020 95524699 | Email: nouchthv@gmail.com<br>
-                        ເລກປະຈຳຕົວຜູ້ເສຍອາກອນ: 123456789
-                    </div>
+                    <div class="company-name" contenteditable="true">Annie KaiyDee POS</div>
+                    <div class="company-details editable" contenteditable="true">ບ້ານຈັດສັນ, ເມືອງນະຄອນປາກເຊ, ແຂວງຈຳປາສັກ<br>ໂທ / WhatsApp: 020 9552 4699 · Email: nouchthv@gmail.com<br>ບັນຊີ BCEL: 040120001591394001 (BOUNPASONG CHTHV)</div>
                 </div>
             </div>
             <div>
@@ -417,27 +159,35 @@
         <!-- Meta Details -->
         <div class="meta-details">
             <div class="bill-to">
-                <div class="section-label">ລູກຄ້າ / Bill To</div>
-                <input type="text" class="editable client-name" placeholder="ພິມຊື່ລູກຄ້າ / ຊື່ຮ້ານ...">
-                <textarea class="editable" rows="2" placeholder="ພິມທີ່ຢູ່ລູກຄ້າ..."></textarea>
+                <div class="section-label" id="billToLabel">ລູກຄ້າ / Bill To</div>
+                <input type="text" class="editable client-name" placeholder="ພິມຊື່ຮ້ານ / ຊື່ລູກຄ້າ...">
+                <textarea class="editable" rows="2" placeholder="ພິມທີ່ຢູ່ຮ້ານ / ລູກຄ້າ..."></textarea>
                 <input type="text" class="editable" placeholder="ພິມເບີໂທຕິດຕໍ່...">
             </div>
             <div class="invoice-details">
                 <table>
                     <tr>
-                        <td>ເລກທີ / No:</td>
-                        <td><input type="text" class="editable" value="QUO-2026001"></td>
+                        <td id="noLabel">ເລກທີ / No:</td>
+                        <td><input type="text" class="editable" id="docNo" value="QUO-2026001"></td>
                     </tr>
                     <tr>
                         <td>ວັນທີ / Date:</td>
                         <td><input type="date" class="editable" id="docDate"></td>
                     </tr>
-                    <tr>
-                        <td>ກຳນົດຊຳລະ:</td>
+                    <tr id="dueRow">
+                        <td id="dueLabel">ກຳນົດຊຳລະ:</td>
                         <td><input type="date" class="editable" id="dueDate"></td>
                     </tr>
                 </table>
             </div>
+        </div>
+
+        <!-- ໃບສັນຍາ intro (Contract only) -->
+        <div class="contract-intro">
+            <div class="section-label">ຂໍ້ຕົກລົງການໃຊ້ບໍລິການ</div>
+            <div class="party-row"><b>ຝ່າຍຜູ້ໃຫ້ບໍລິການ (ຝ່າຍ ກ):</b> <span>Annie KaiyDee POS</span></div>
+            <div class="party-row"><b>ຝ່າຍຜູ້ໃຊ້ບໍລິການ (ຝ່າຍ ຂ):</b> <span contenteditable="true" class="editable" style="flex:1">................................ (ຊື່ຮ້ານ / ຜູ້ໃຊ້)</span></div>
+            <div style="font-size:0.83rem; color:var(--gray); margin-top:6px; line-height:1.55;">ທັງສອງຝ່າຍໄດ້ຕົກລົງເຫັນດີຮ່ວມກັນໃນການໃຊ້ບໍລິການລະບົບ POS (ແອັບ + ເວັບເມນູ) ຕາມລາຍລະອຽດ ແລະ ເງື່ອນໄຂດັ່ງລຸ່ມນີ້.</div>
         </div>
 
         <!-- Items Table -->
@@ -445,29 +195,19 @@
             <thead>
                 <tr>
                     <th>ລາຍການ / Description</th>
-                    <th style="text-align: right;">ລາຄາ / Price</th>
-                    <th style="text-align: center;">ຈຳນວນ</th>
-                    <th style="text-align: right;">ລວມ / Amount</th>
+                    <th style="text-align:right;">ລາຄາ / Price</th>
+                    <th style="text-align:center;">ຈຳນວນ</th>
+                    <th style="text-align:right;">ລວມ / Amount</th>
                     <th class="delete-col"></th>
                 </tr>
             </thead>
             <tbody id="itemsBody">
                 <tr>
-                    <td>
-                        <textarea class="editable" rows="2" placeholder="ພິມຊື່ລາຍການ..." oninput="calculateRow(this)">Software Only (POS + Web Menu) ຕະຫຼອດຊີບ</textarea>
-                    </td>
-                    <td>
-                        <input type="text" class="editable num-input price-input" value="2,000,000" oninput="formatNumberInput(this); calculateRow(this)">
-                    </td>
-                    <td>
-                        <input type="number" class="editable center-input qty-input" value="1" min="1" oninput="calculateRow(this)">
-                    </td>
-                    <td class="row-total" style="text-align: right;">
-                        2,000,000
-                    </td>
-                    <td class="delete-col">
-                        <button class="btn-danger" onclick="deleteRow(this)">X</button>
-                    </td>
+                    <td><textarea class="editable" rows="2" placeholder="ພິມຊື່ລາຍການ..." list="predefinedItems" oninput="autoFillPrice(this); calculateRow(this)">Annie KaiyDee POS · ແພັກລາຍປີ (ໂປຣ 30 ຮ້ານທຳອິດ)</textarea></td>
+                    <td><input type="text" class="editable num-input price-input" value="690,000" oninput="formatNumberInput(this); calculateRow(this)"></td>
+                    <td><input type="number" class="editable center-input qty-input" value="1" min="1" oninput="calculateRow(this)"></td>
+                    <td class="row-total" style="text-align:right;">690,000</td>
+                    <td class="delete-col"><button class="btn-danger" onclick="deleteRow(this)">X</button></td>
                 </tr>
             </tbody>
         </table>
@@ -478,52 +218,46 @@
         <div class="totals-section">
             <div class="totals-box">
                 <table>
-                    <tr>
-                        <td>ມູນຄ່າລວມ / Subtotal:</td>
-                        <td id="subtotal">2,000,000 ₭</td>
-                    </tr>
+                    <tr><td>ມູນຄ່າລວມ / Subtotal:</td><td id="subtotal">690,000 ₭</td></tr>
                     <tr>
                         <td>ສ່ວນຫຼຸດ / Discount:</td>
                         <td>
-                            <div style="display: flex; justify-content: flex-end;">
-                                <input type="text" class="editable num-input" style="width: 80px;" value="0" id="discountInput" oninput="formatNumberInput(this); calculateGrandTotal()">
+                            <div style="display:flex; justify-content:flex-end;">
+                                <input type="text" class="editable num-input" style="width:90px;" value="0" id="discountInput" oninput="formatNumberInput(this); calculateGrandTotal()">
                                 <span>₭</span>
                             </div>
                         </td>
                     </tr>
-                    <tr class="grand-total">
-                        <td>ລວມທັງໝົດ / Total:</td>
-                        <td id="grandTotal">2,000,000 ₭</td>
-                    </tr>
+                    <tr class="grand-total"><td>ລວມທັງໝົດ / Total:</td><td id="grandTotal">690,000 ₭</td></tr>
                 </table>
             </div>
         </div>
 
         <!-- Footer / Notes -->
         <div class="footer-bottom">
-            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px;">
-                <div class="notes-box" style="margin-bottom: 0; width: 65%;">
-                    <div class="section-label">ໝາຍເຫດ / ເງື່ອນໄຂ</div>
-                    <textarea class="editable" rows="4">1. ກະລຸນາຊຳລະເງິນພາຍໃນ 7 ວັນຫຼັງຈາກໄດ້ຮັບໃບແຈ້ງໜີ້.
-2. ເງື່ອນໄຂການຮັບປະກັນ: ດູແລລະບົບ ແລະ ໃຫ້ຄຳປຶກສາຕະຫຼອດອາຍຸການໃຊ້ງານ.
-3. ຊຳລະຜ່ານບັນຊີ: ທະນາຄານການຄ້າ (BCEL)
-   ເລກບັນຊີ: 040120001591394001 (ຊື່: BOUNPASONG CHTHV)</textarea>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:46px; gap:20px;">
+                <div class="notes-box" style="width:66%;">
+                    <div class="section-label" id="notesLabel">ໝາຍເຫດ / ເງື່ອນໄຂ</div>
+                    <textarea class="editable" id="notesArea" rows="5">1. ກະລຸນາຊຳລະເງິນພາຍໃນ 7 ວັນຫຼັງຈາກໄດ້ຮັບໃບແຈ້ງໜີ້.
+2. ຮັບປະກັນການໃຊ້ງານ ດູแลລະບົບ ແລະ ໃຫ້ຄຳປຶກສາຕະຫຼອດອາຍຸການໃຊ້ງານ.
+3. ຂໍ້ມູນຮ້ານເກັບຢູ່ Cloud ປອດໄພ ບໍ່ສູນຫາຍ · ຕໍ່ອາຍຸໄດ້ທັນທີ.
+4. ຊຳລະຜ່ານບັນຊີ: ທະນາຄານການຄ້າ (BCEL) — 040120001591394001 (ຊື່: BOUNPASONG CHTHV)</textarea>
                 </div>
-                <div style="width: 30%; display: flex; flex-direction: column; align-items: center;">
-                    <div class="section-label" style="text-align: center; margin-bottom: 8px;">ສະແກນເພື່ອຊຳລະເງິນ</div>
-                    <img src="assets/qr.png" alt="QR Code" style="width: 100px; height: 100px; object-fit: contain; border: 1px solid var(--border); border-radius: 8px; padding: 4px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                <div style="width:30%; display:flex; flex-direction:column; align-items:center;">
+                    <div class="section-label" style="text-align:center; margin-bottom:8px;">ສະແກນເພື່ອຊຳລະ (BCEL)</div>
+                    <img src="assets/qr.png" alt="QR" style="width:110px; height:110px; object-fit:contain; border:1px solid var(--border); border-radius:10px; padding:5px; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
                 </div>
             </div>
-            
+
             <div class="signature-area">
                 <div class="signature-box">
                     <div class="signature-line"></div>
-                    <div class="sig-title">ຜູ້ສະເໜີລາຄາ / ຜູ້ຂາຍ</div>
+                    <div class="sig-title" id="sigLeft">ຜູ້ສະເໜີລາຄາ / ຜູ້ຂາຍ</div>
                     <div class="sig-desc">(ເຊັນ ແລະ ປະທັບຕາ)</div>
                 </div>
                 <div class="signature-box">
                     <div class="signature-line"></div>
-                    <div class="sig-title">ລູກຄ້າ / ຜູ້ຮັບ</div>
+                    <div class="sig-title" id="sigRight">ລູກຄ້າ / ຜູ້ຮັບ</div>
                     <div class="sig-desc">(ເຊັນຮັບເອກະສານ)</div>
                 </div>
             </div>
@@ -531,93 +265,112 @@
     </div>
 
     <script>
+        // 💰 ราคาปัจจุบัน (auto-fill เมื่อพิมพ์ตรงกับรายการที่รู้จัก)
+        const ITEM_PRICES = {
+            "Annie KaiyDee POS · ແພັກລາຍປີ (ໂປຣ 30 ຮ້ານທຳອິດ)": 690000,
+            "Annie KaiyDee POS · ແພັກລາຍປີ (ລາຄາປົກກະຕິ)": 990000,
+            "Annie KaiyDee POS · Lifetime (ໃຊ້ຕະຫຼອດ)": 2000000,
+        };
+
+        // ค่าเริ่มต้นหมายเหตุ/สัญญา ต่อประเภท
+        const NOTES = {
+            quo: `1. ໃບສະເໜີລາຄານີ້ມີอายุ 15 ວັນ ນັບແຕ່ວັນທີ.
+2. ຮັບປະກັນການໃຊ້ງານ ດູแลລະບົบ ແລະ ໃຫ້ຄຳปรึกษาตลอดอายุการใช้งาน.
+3. ຂໍ້ມູນຮ້ານเก็บอยู่ Cloud ปลอดภัย ບໍ່ສูนหาย.
+4. ຊຳລະผ่านบัญชี: ທະนาคารการค้า (BCEL) — 040120001591394001 (ຊื่: BOUNPASONG CHTHV)`,
+            inv: `1. ກະລຸนาชำระเงินภายใน 7 ວັນຫຼັงจากได้รับใบแจ้งหนี้.
+2. ຮັບປະກັນการใช้งาน ดูแลระบบ และให้คำปรึกษาตลอดอายุการใช้งาน.
+3. ຊຳລະผ่านบัญชี: ທະนาคารการค้า (BCEL) — 040120001591394001 (ຊื่: BOUNPASONG CHTHV)`,
+            rec: `✅ ได้รับชำระเงินครบถ้วนแล้ว — ขอบคุณที่ใช้บริการ Annie KaiyDee POS.
+บริการรวม: อัปเดตระบบ + ให้คำปรึกษา ตลอดอายุการใช้งาน · ข้อมูลอยู่ Cloud ปลอดภัย.`,
+            con: `1. ຝ່າຍ ກ ໃຫ້ບໍລິການລະບົບ POS (ແອັບ + ເວັບເມນູ) ພ້ອມອັບເດດ ແລະ ຄຳປຶກສາຕະຫຼອດອາຍຸສັນຍາ.
+2. ອາຍຸສັນຍາ 1 ປີ ນັບແຕ່ວັນເปิดใช้งาน · ຕໍ່ອາຍຸໄດ້ກ່ອນໝົດກຳນົດ.
+3. ຝ່າຍ ຂ ຊຳລະຄ່າບໍລິການຕາມທີ່ລະບຸ · ຂໍ້ມູນຮ້ານເກັບຢູ່ Cloud ປອດໄພ ບໍ່ສູນຫາຍ.
+4. ຮັບປະກັນການໃຊ້ງານ ແລະ ແກ້ໄຂບັນຫາລະບົບຕະຫຼອດອາຍຸສັນຍາ.
+5. ຄ່າບໍລິການທີ່ຊຳລະແລ້ວ ບໍ່ຄืนໃນກรณียกເລີກເອງ · ຍกເວັ້ນລະບົບໃຊ້ງານບໍ່ໄດ້ຈາກຝ່າຍ ກ.
+ຊຳລະຜ່ານບັນຊີ: ທะนาคารการค้า (BCEL) — 040120001591394001 (ຊื่: BOUNPASONG CHTHV)`
+        };
+
+        const TITLES = { quo:'ໃບສະເໜີລາຄາ', inv:'ໃບແຈ້ງໜີ້', rec:'ໃບຮັບເງິນ', con:'ໃບສັນຍາການໃຊ້ບໍລິການ' };
+        const PREFIX = { quo:'QUO', inv:'INV', rec:'REC', con:'CON' };
+
         document.getElementById('docDate').valueAsDate = new Date();
-        const nextWeek = new Date();
-        nextWeek.setDate(nextWeek.getDate() + 7);
+        const nextWeek = new Date(); nextWeek.setDate(nextWeek.getDate() + 7);
         document.getElementById('dueDate').valueAsDate = nextWeek;
+        changeDocType(); // set initial number
 
         function changeDocType() {
-            const select = document.getElementById('docTypeSelect');
-            document.getElementById('docTitle').value = select.value;
-            
-            const invoiceNo = document.querySelector('.invoice-details tr:first-child input');
-            const dateStr = new Date().toISOString().slice(0,10).replace(/-/g, '');
-            if(select.value === 'ໃບສະເໜີລາຄາ') invoiceNo.value = 'QUO-' + dateStr;
-            else if(select.value === 'ໃບແຈ້ງໜີ້') invoiceNo.value = 'INV-' + dateStr;
-            else invoiceNo.value = 'REC-' + dateStr;
+            const t = document.getElementById('docTypeSelect').value;
+            document.getElementById('docTitle').value = TITLES[t];
+            const dateStr = new Date().toISOString().slice(0,10).replace(/-/g,'');
+            document.getElementById('docNo').value = PREFIX[t] + '-' + dateStr;
+            document.getElementById('notesArea').value = NOTES[t];
+
+            // toggle contract mode
+            document.body.classList.toggle('contract-mode', t === 'con');
+
+            // labels per type
+            const dueLabel = document.getElementById('dueLabel');
+            const notesLabel = document.getElementById('notesLabel');
+            const sigLeft = document.getElementById('sigLeft');
+            const sigRight = document.getElementById('sigRight');
+            const dueRow = document.getElementById('dueRow');
+            dueRow.style.display = (t === 'rec') ? 'none' : '';
+            if (t === 'con') {
+                dueLabel.textContent = 'ໄລຍະສັນຍາ:'; notesLabel.textContent = 'ເງື່ອນໄຂສັນຍາ';
+                sigLeft.textContent = 'ຝ່າຍ ກ / ຜູ້ໃຫ້ບໍລິການ'; sigRight.textContent = 'ຝ່າຍ ຂ / ຜູ້ໃຊ້ບໍລິການ';
+            } else {
+                dueLabel.textContent = 'ກຳນົດຊຳລະ:'; notesLabel.textContent = 'ໝາຍເຫດ / ເງື່ອນໄຂ';
+                sigLeft.textContent = 'ຜູ້ສະເໜີລາຄາ / ຜູ້ຂາຍ'; sigRight.textContent = 'ລູກຄ້າ / ຜູ້ຮັບ';
+            }
         }
 
-        function formatNumber(num) {
-            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        function autoFillPrice(el) {
+            const name = el.value.trim();
+            if (ITEM_PRICES[name] !== undefined) {
+                const row = el.closest('tr');
+                row.querySelector('.price-input').value = formatNumber(ITEM_PRICES[name]);
+            }
         }
 
-        function parseFormattedNumber(str) {
-            return parseFloat(str.replace(/,/g, '')) || 0;
-        }
+        function formatNumber(num){ return Math.round(num).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
+        function parseFormattedNumber(str){ return parseFloat(String(str).replace(/,/g,'')) || 0; }
+        function formatNumberInput(input){ if(input.value.trim()==='') return; input.value = formatNumber(parseFormattedNumber(input.value)); }
 
-        function formatNumberInput(input) {
-            let val = parseFormattedNumber(input.value);
-            if(input.value.trim() === '') return;
-            input.value = formatNumber(val);
-        }
-
-        function calculateRow(element) {
+        function calculateRow(element){
             const row = element.closest('tr');
-            const priceInput = row.querySelector('.price-input');
-            const qtyInput = row.querySelector('.qty-input');
-            const rowTotalCell = row.querySelector('.row-total');
-
-            const price = parseFormattedNumber(priceInput.value);
-            const qty = parseFloat(qtyInput.value) || 0;
-            const total = price * qty;
-
-            rowTotalCell.textContent = formatNumber(total);
+            const price = parseFormattedNumber(row.querySelector('.price-input').value);
+            const qty = parseFloat(row.querySelector('.qty-input').value) || 0;
+            row.querySelector('.row-total').textContent = formatNumber(price * qty);
             calculateGrandTotal();
         }
 
-        function calculateGrandTotal() {
+        function calculateGrandTotal(){
             let subtotal = 0;
-            const rows = document.querySelectorAll('#itemsBody tr');
-            
-            rows.forEach(row => {
-                const rowTotalText = row.querySelector('.row-total').textContent;
-                subtotal += parseFormattedNumber(rowTotalText);
+            document.querySelectorAll('#itemsBody tr').forEach(row => {
+                subtotal += parseFormattedNumber(row.querySelector('.row-total').textContent);
             });
-
             const discount = parseFormattedNumber(document.getElementById('discountInput').value);
-            const grandTotal = subtotal - discount;
-
+            const grand = subtotal - discount;
             document.getElementById('subtotal').textContent = formatNumber(subtotal) + ' ₭';
-            document.getElementById('grandTotal').textContent = formatNumber(grandTotal > 0 ? grandTotal : 0) + ' ₭';
+            document.getElementById('grandTotal').textContent = formatNumber(grand > 0 ? grand : 0) + ' ₭';
         }
 
-        function addRow() {
+        function addRow(){
             const tbody = document.getElementById('itemsBody');
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td>
-                    <textarea class="editable" rows="2" placeholder="ພິມຊື່ລາຍການ..." list="predefinedItems" oninput="calculateRow(this)"></textarea>
-                </td>
-                <td>
-                    <input type="text" class="editable num-input price-input" value="0" oninput="formatNumberInput(this); calculateRow(this)">
-                </td>
-                <td>
-                    <input type="number" class="editable center-input qty-input" value="1" min="1" oninput="calculateRow(this)">
-                </td>
-                <td class="row-total" style="text-align: right;">0</td>
-                <td class="delete-col">
-                    <button class="btn-danger" onclick="deleteRow(this)">X</button>
-                </td>
-            `;
+                <td><textarea class="editable" rows="2" placeholder="ພິມຊື່ລາຍການ..." list="predefinedItems" oninput="autoFillPrice(this); calculateRow(this)"></textarea></td>
+                <td><input type="text" class="editable num-input price-input" value="0" oninput="formatNumberInput(this); calculateRow(this)"></td>
+                <td><input type="number" class="editable center-input qty-input" value="1" min="1" oninput="calculateRow(this)"></td>
+                <td class="row-total" style="text-align:right;">0</td>
+                <td class="delete-col"><button class="btn-danger" onclick="deleteRow(this)">X</button></td>`;
             tbody.appendChild(tr);
         }
 
-        function deleteRow(btn) {
+        function deleteRow(btn){
             const tbody = document.getElementById('itemsBody');
-            if (tbody.children.length > 1) {
-                btn.closest('tr').remove();
-                calculateGrandTotal();
-            }
+            if (tbody.children.length > 1){ btn.closest('tr').remove(); calculateGrandTotal(); }
         }
     </script>
 </body>
