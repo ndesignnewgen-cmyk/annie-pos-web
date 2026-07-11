@@ -31,12 +31,12 @@
 
         /* A4 page — min-height so a long ໃບສັນຍາ can flow to 2 pages */
         .page {
-            background:white; width:210mm; min-height:297mm; padding:15mm 18mm;
+            background:white; width:210mm; min-height:297mm; padding:12mm 16mm;
             box-shadow:0 10px 25px rgba(0,0,0,0.1); display:flex; flex-direction:column; position:relative;
         }
 
         /* Header */
-        .header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:26px; }
+        .header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px; }
         .company-brand { display:flex; align-items:center; gap:15px; }
         .logo-img { width:64px; height:64px; border-radius:14px; object-fit:cover; box-shadow:0 2px 6px rgba(0,0,0,0.12); }
         .company-name { font-size:1.55rem; font-weight:700; color:var(--primary); margin-bottom:3px; line-height:1.1; }
@@ -46,7 +46,7 @@
             background:transparent; letter-spacing:1px; width:290px; outline:none;
         }
 
-        .meta-details { display:flex; justify-content:space-between; margin-bottom:24px; gap:20px; }
+        .meta-details { display:flex; justify-content:space-between; margin-bottom:16px; gap:20px; }
         .bill-to { width:52%; }
         .section-label { font-size:0.72rem; font-weight:700; color:var(--primary); text-transform:uppercase; letter-spacing:1px; margin-bottom:5px; }
         .invoice-details table { width:100%; border-collapse:collapse; }
@@ -65,7 +65,7 @@
         .client-name { font-size:1.1rem !important; font-weight:600; color:var(--dark); }
 
         /* ໃບສັນຍາ intro (hidden unless Contract) */
-        .contract-intro { display:none; background:var(--primary-light); border-radius:10px; padding:12px 16px; margin-bottom:22px; }
+        .contract-intro { display:none; background:var(--primary-light); border-radius:10px; padding:9px 14px; margin-bottom:10px; }
         .contract-intro .section-label { margin-bottom:8px; }
         .party-row { display:flex; gap:10px; margin-bottom:6px; font-size:0.85rem; }
         .party-row b { min-width:172px; color:var(--dark); }
@@ -87,7 +87,7 @@
         .btn-add-row { align-self:flex-start; font-size:0.75rem; padding:5px 10px; margin-bottom:26px; color:var(--gray); border:1px dashed var(--gray); background:transparent; cursor:pointer; border-radius:5px; }
         .btn-add-row:hover { background:#f3f4f6; }
 
-        .totals-section { display:flex; justify-content:flex-end; margin-bottom:26px; }
+        .totals-section { display:flex; justify-content:flex-end; margin-bottom:16px; }
         .totals-box { width:260px; }
         .totals-box table { width:100%; border-collapse:collapse; }
         .totals-box td { padding:6px 0; font-size:0.85rem; }
@@ -97,7 +97,7 @@
 
         .footer-bottom { margin-top:auto; display:flex; flex-direction:column; width:100%; }
         .notes-box { width:100%; }
-        .notes-box textarea { font-size:0.8rem; color:var(--gray); line-height:1.6; width:100%; }
+        .notes-box textarea { font-size:0.8rem; color:var(--gray); line-height:1.5; width:100%; }
         .signature-area { display:flex; justify-content:space-between; padding:0 10px; }
         .signature-box { width:200px; text-align:center; }
         .signature-line { border-top:1px solid #9ca3af; margin-bottom:10px; }
@@ -237,7 +237,7 @@
 
         <!-- Footer / Notes -->
         <div class="footer-bottom">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:46px; gap:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; gap:20px;">
                 <div class="notes-box" style="width:66%;">
                     <div class="section-label" id="notesLabel">ໝາຍເຫດ / ເງື່ອນໄຂ</div>
                     <textarea class="editable" id="notesArea" rows="5">1. ກະລຸນາຊຳລະເງິນພາຍໃນ 7 ວັນຫຼັງຈາກໄດ້ຮັບໃບແຈ້ງໜີ້.
@@ -247,7 +247,7 @@
                 </div>
                 <div style="width:30%; display:flex; flex-direction:column; align-items:center;">
                     <div class="section-label" style="text-align:center; margin-bottom:8px;">ສະແກນເພື່ອຊຳລະ (BCEL)</div>
-                    <img src="assets/qr.png" alt="QR" style="width:110px; height:110px; object-fit:contain; border:1px solid var(--border); border-radius:10px; padding:5px; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+                    <img src="assets/qr.png" alt="QR" style="width:95px; height:95px; object-fit:contain; border:1px solid var(--border); border-radius:10px; padding:5px; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
                 </div>
             </div>
 
