@@ -60,6 +60,8 @@
         }
         input.editable:hover, textarea.editable:hover, [contenteditable].editable:hover,
         input.editable:focus, textarea.editable:focus, [contenteditable].editable:focus { border-color:#ccc; background:#fafafa; }
+        /* textarea ยืดสูงตามเนื้อหา (ไม่มี scrollbar) → พิมพ์เห็นครบ */
+        textarea.editable { overflow:hidden; }
         .client-name { font-size:1.1rem !important; font-weight:600; color:var(--dark); }
 
         /* ໃບສັນຍາ intro (hidden unless Contract) */
@@ -203,7 +205,7 @@
             </thead>
             <tbody id="itemsBody">
                 <tr>
-                    <td><textarea class="editable" rows="2" placeholder="ພິມຊື່ລາຍການ..." list="predefinedItems" oninput="autoFillPrice(this); calculateRow(this)">Annie KaiyDee POS · ແພັກລາຍປີ (ໂປຣ 30 ຮ້ານທຳອິດ)</textarea></td>
+                    <td><textarea class="editable" rows="2" placeholder="ພິມຊື່ລາຍການ..." list="predefinedItems" oninput="autoFillPrice(this); calculateRow(this); autoGrow(this)">Annie KaiyDee POS · ແພັກລາຍປີ (ໂປຣ 30 ຮ້ານທຳອິດ)</textarea></td>
                     <td><input type="text" class="editable num-input price-input" value="690,000" oninput="formatNumberInput(this); calculateRow(this)"></td>
                     <td><input type="number" class="editable center-input qty-input" value="1" min="1" oninput="calculateRow(this)"></td>
                     <td class="row-total" style="text-align:right;">690,000</td>
@@ -294,10 +296,17 @@
         const TITLES = { quo:'ໃບສະເໜີລາຄາ', inv:'ໃບແຈ້ງໜີ້', rec:'ໃບຮັບເງິນ', con:'ໃບສັນຍາການໃຊ້ບໍລິການ' };
         const PREFIX = { quo:'QUO', inv:'INV', rec:'REC', con:'CON' };
 
+        // 📏 textarea ยืดสูงตามเนื้อหา → พิมพ์เห็นครบ ไม่มี scrollbar
+        function autoGrow(el){ if(!el) return; el.style.height='auto'; el.style.height=(el.scrollHeight+2)+'px'; }
+        function growAll(){ document.querySelectorAll('textarea.editable').forEach(autoGrow); }
+        document.querySelectorAll('textarea.editable').forEach(t => t.addEventListener('input', () => autoGrow(t)));
+        window.addEventListener('beforeprint', growAll);
+
         document.getElementById('docDate').valueAsDate = new Date();
         const nextWeek = new Date(); nextWeek.setDate(nextWeek.getDate() + 7);
         document.getElementById('dueDate').valueAsDate = nextWeek;
         changeDocType(); // set initial number
+        growAll();
 
         function changeDocType() {
             const t = document.getElementById('docTypeSelect').value;
@@ -305,6 +314,7 @@
             const dateStr = new Date().toISOString().slice(0,10).replace(/-/g,'');
             document.getElementById('docNo').value = PREFIX[t] + '-' + dateStr;
             document.getElementById('notesArea').value = NOTES[t];
+            autoGrow(document.getElementById('notesArea'));
 
             // toggle contract mode
             document.body.classList.toggle('contract-mode', t === 'con');
@@ -360,7 +370,7 @@
             const tbody = document.getElementById('itemsBody');
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><textarea class="editable" rows="2" placeholder="ພິມຊື່ລາຍການ..." list="predefinedItems" oninput="autoFillPrice(this); calculateRow(this)"></textarea></td>
+                <td><textarea class="editable" rows="2" placeholder="ພິມຊື່ລາຍການ..." list="predefinedItems" oninput="autoFillPrice(this); calculateRow(this); autoGrow(this)"></textarea></td>
                 <td><input type="text" class="editable num-input price-input" value="0" oninput="formatNumberInput(this); calculateRow(this)"></td>
                 <td><input type="number" class="editable center-input qty-input" value="1" min="1" oninput="calculateRow(this)"></td>
                 <td class="row-total" style="text-align:right;">0</td>
