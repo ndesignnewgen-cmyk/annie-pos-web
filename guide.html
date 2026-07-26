@@ -1,388 +1,414 @@
-<!DOCTYPE html>
-<html lang="lo">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ຄູ່ມືການໃຊ້ງານ · Annie KaiyDee POS</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!doctype html><html lang="lo"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ຄູ່ມືການໃຊ້ງານ Annie KaiyDee POS</title>
 <style>
-  :root{--o:#F57C00;--o2:#FF9800;--bg:#FFF8F1;--text:#1F2430;--muted:#6B7280;--line:#EFE6DC;}
-  *{margin:0;padding:0;box-sizing:border-box;}
-  body{font-family:'Noto Sans Lao',sans-serif;color:var(--text);background:#fff;line-height:1.75;-webkit-font-smoothing:antialiased;}
-  .hero{background:linear-gradient(135deg,var(--o2),var(--o));color:#fff;padding:34px 20px 28px;text-align:center;border-radius:0 0 24px 24px;}
-  .hero .logo{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 12px;}
-  .hero h1{font-size:24px;font-weight:800;}
-  .hero p{opacity:.9;font-size:14px;margin-top:6px;}
-  .wrap{max-width:760px;margin:0 auto;padding:20px 18px 60px;}
-  .toc{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:18px 0 26px;}
-  .toc h2{font-size:16px;color:var(--o);margin-bottom:10px;}
-  .toc ol{margin-left:18px;}
-  .toc a{color:var(--text);text-decoration:none;}
-  .toc a:hover{color:var(--o);}
-  .toc li{margin:3px 0;font-size:14.5px;}
-  section{margin:30px 0;scroll-margin-top:14px;}
-  h2.sec{font-size:19px;font-weight:800;color:var(--o);display:flex;align-items:center;gap:8px;padding-bottom:6px;border-bottom:2px solid var(--bg);margin-bottom:12px;}
-  h3{font-size:16px;font-weight:700;margin:16px 0 6px;}
-  p,li{font-size:15px;}
-  .ill{display:block;margin:6px auto 14px;max-width:300px;width:100%;}
-  ol.steps{margin:8px 0 8px 4px;list-style:none;counter-reset:s;}
-  ol.steps li{counter-increment:s;position:relative;padding:4px 0 4px 34px;}
-  ol.steps li::before{content:counter(s);position:absolute;left:0;top:5px;width:22px;height:22px;background:var(--o);color:#fff;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;}
-  ul.dots{margin:6px 0 6px 20px;}
-  ul.dots li{margin:3px 0;}
-  .tip{background:#E8F5E9;border-left:4px solid #43A047;border-radius:0 10px 10px 0;padding:10px 14px;margin:12px 0;font-size:14px;}
-  .warn{background:#FFF3E0;border-left:4px solid var(--o);border-radius:0 10px 10px 0;padding:10px 14px;margin:12px 0;font-size:14px;}
-  .role{background:#E6F1FB;border-left:4px solid #1E88E5;border-radius:0 10px 10px 0;padding:10px 14px;margin:12px 0;font-size:14px;}
-  .footer{text-align:center;color:var(--muted);font-size:13px;margin-top:40px;padding-top:20px;border-top:1px solid var(--line);}
-  .footer a{color:var(--o);text-decoration:none;font-weight:700;}
-  .top{display:block;text-align:right;font-size:12px;color:var(--muted);text-decoration:none;margin-top:4px;}
-  @media print{.toc,.top{display:none;} .hero{border-radius:0;}}
-</style>
-</head>
-<body>
-<div class="hero">
-  <div class="logo">🛒</div>
-  <h1>ຄູ່ມືການໃຊ້ງານ</h1>
-  <p>Annie KaiyDee POS · ລະບົບຈັດການຮ້ານ</p>
-</div>
+  :root{
+    --bg:#FBF7F2; --surface:#FFFFFF; --surface-2:#FBF6F0;
+    --ink:#2A2320; --muted:#6B5D54; --faint:#9A8B7F;
+    --accent:#E8620E; --accent-ink:#B44905; --accent-soft:#FCEBDD;
+    --line:#EEE4D8; --line-strong:#E1D3C4;
+    --c-sell:#E8620E; --c-shift:#2E7D32; --c-table:#00897B;
+    --c-kitchen:#B65B24; --c-stock:#6D4C41; --c-member:#8E24AA;
+    --c-catalog:#6A1B9A; --c-special:#1565C0; --c-print:#455A64; --c-report:#00695C;
+    --radius:16px; --shadow:0 1px 2px rgba(60,40,20,.05),0 8px 24px rgba(60,40,20,.05);
+    --maxw:1120px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#191512; --surface:#221D19; --surface-2:#26201B;
+      --ink:#F3EBE3; --muted:#B6A99E; --faint:#8A7C70;
+      --accent:#FF8A3D; --accent-ink:#FFA362; --accent-soft:#33231A;
+      --line:#342B24; --line-strong:#41352C;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#191512; --surface:#221D19; --surface-2:#26201B;
+    --ink:#F3EBE3; --muted:#B6A99E; --faint:#8A7C70;
+    --accent:#FF8A3D; --accent-ink:#FFA362; --accent-soft:#33231A;
+    --line:#342B24; --line-strong:#41352C;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px rgba(0,0,0,.35);
+  }
+  :root[data-theme="light"]{
+    --bg:#FBF7F2; --surface:#FFFFFF; --surface-2:#FBF6F0;
+    --ink:#2A2320; --muted:#6B5D54; --faint:#9A8B7F;
+    --accent:#E8620E; --accent-ink:#B44905; --accent-soft:#FCEBDD;
+    --line:#EEE4D8; --line-strong:#E1D3C4;
+    --shadow:0 1px 2px rgba(60,40,20,.05),0 8px 24px rgba(60,40,20,.05);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Noto Sans Lao','Noto Sans Lao UI','Lao UI','Saysettha OT','Phetsarath OT','Lao Sangam MN',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    line-height:1.7; font-size:16px; -webkit-font-smoothing:antialiased;
+    font-variant-numeric:tabular-nums;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    background:
+      radial-gradient(120% 120% at 90% -10%, var(--accent-soft), transparent 60%),
+      linear-gradient(180deg, var(--surface-2), var(--bg));
+    border-bottom:1px solid var(--line);
+  }
+  .hero-inner{max-width:var(--maxw); margin:0 auto; padding:44px 20px 34px}
+  .brand{display:flex; align-items:center; gap:12px; margin-bottom:20px}
+  .brand-mark{
+    width:44px;height:44px;border-radius:12px;flex:none;
+    background:linear-gradient(135deg,var(--accent),#F79A3C);
+    display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px;
+    box-shadow:0 6px 16px rgba(232,98,14,.3);
+  }
+  .brand-name{font-weight:800;letter-spacing:.02em}
+  .brand-name small{display:block;font-weight:500;color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+  .hero h1{
+    font-size:clamp(30px,5vw,50px); line-height:1.15; margin:6px 0 10px;
+    letter-spacing:-.01em; text-wrap:balance; font-weight:800;
+  }
+  .hero .lead{font-size:clamp(16px,2.2vw,19px); color:var(--muted); max-width:60ch; margin:0}
+  .ver{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;
+    font-weight:700;font-size:13px;padding:5px 12px;border-radius:999px;box-shadow:0 4px 12px rgba(232,98,14,.28)}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .chip{background:var(--surface);border:1px solid var(--line-strong);border-radius:999px;
+    padding:6px 13px;font-size:13.5px;color:var(--ink);font-weight:600}
+
+  /* ---------- Layout ---------- */
+  .layout{display:grid;grid-template-columns:1fr;gap:32px;padding:36px 0 60px}
+  @media(min-width:940px){.layout{grid-template-columns:238px 1fr;gap:44px;align-items:start}}
+
+  nav.toc{position:relative}
+  @media(min-width:940px){nav.toc{position:sticky;top:20px}}
+  .toc h2{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--faint);margin:0 0 12px 4px}
+  .toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+  .toc a{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--muted);
+    padding:7px 10px;border-radius:9px;font-size:14.5px;font-weight:600;transition:background .15s,color .15s}
+  .toc a .n{color:var(--faint);font-size:12px;font-weight:700;min-width:16px}
+  .toc a:hover{background:var(--accent-soft);color:var(--accent-ink)}
+  .toc-scroll{overflow:auto}
+  @media(min-width:940px){.toc-scroll{max-height:calc(100vh - 60px)}}
+
+  /* ---------- Sections ---------- */
+  main{min-width:0;display:flex;flex-direction:column;gap:20px}
+  .sec{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);overflow:hidden;scroll-margin-top:16px}
+  .sec-head{display:flex;gap:14px;align-items:center;padding:18px 22px;border-bottom:1px solid var(--line);
+    position:relative}
+  .sec-head::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--tag,var(--accent))}
+  .sec-num{font-weight:800;font-size:15px;color:#fff;background:var(--tag,var(--accent));
+    width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex:none}
+  .sec-ico{font-size:24px;flex:none;line-height:1}
+  .sec-head h3{margin:0;font-size:19px;font-weight:800;letter-spacing:-.01em}
+  .sec-body{padding:8px 22px 22px}
+  .sec-body p{margin:12px 0;color:var(--muted)}
+  .sec-body p.intro{color:var(--ink)}
+
+  ol.steps{margin:10px 0 4px;padding:0;list-style:none;counter-reset:s;display:flex;flex-direction:column;gap:9px}
+  ol.steps>li{position:relative;padding-left:38px;counter-increment:s}
+  ol.steps>li::before{content:counter(s);position:absolute;left:0;top:1px;
+    width:26px;height:26px;border-radius:8px;background:var(--accent-soft);color:var(--accent-ink);
+    font-weight:800;font-size:13px;display:grid;place-items:center}
+  ol.steps b{color:var(--ink)}
+  .k{background:var(--surface-2);border:1px solid var(--line-strong);border-radius:7px;
+    padding:1px 8px;font-weight:700;color:var(--ink);white-space:nowrap;font-size:14.5px}
+
+  .tip{display:flex;gap:10px;margin-top:14px;background:var(--surface-2);border:1px solid var(--line);
+    border-left:4px solid var(--tag,var(--accent));border-radius:10px;padding:11px 14px;font-size:14.5px}
+  .tip .ti{flex:none;font-size:17px;line-height:1.4}
+  .tip b{color:var(--ink)}
+
+  .grid2{display:grid;grid-template-columns:1fr;gap:10px;margin-top:6px}
+  @media(min-width:560px){.grid2{grid-template-columns:1fr 1fr}}
+  .mini{background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:12px 14px}
+  .mini h4{margin:0 0 3px;font-size:15px;font-weight:800}
+  .mini p{margin:0;font-size:13.5px;color:var(--muted)}
+
+  footer{border-top:1px solid var(--line);color:var(--muted);font-size:14px;padding:26px 0 60px}
+  footer .wrap{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center}
+  a.link{color:var(--accent-ink);font-weight:700;text-decoration:none}
+  a.link:hover{text-decoration:underline}
+  :focus-visible{outline:2.5px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+  @media print{
+    header.hero{background:none}
+    nav.toc{display:none}
+    .layout{grid-template-columns:1fr;padding:0}
+    .sec{break-inside:avoid;box-shadow:none;border:1px solid #ccc}
+    body{font-size:12px}
+  }
+</style></head><body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="brand">
+      <div class="brand-mark">A</div>
+      <div class="brand-name">Annie KaiyDee POS<small>ໂປຣແກຣມຂາຍໜ້າຮ້ານ · ພາສາລາວ</small></div>
+    </div>
+    <span class="ver">📘 ຄູ່ມືການໃຊ້ງານ · v2.30</span>
+    <h1>ຄູ່ມືການໃຊ້ງານ ຄົບທຸກຟັງຊັນ</h1>
+    <p class="lead">ຄູ່ມືສະບັບเต็ม ສຳລັບຮ້ານຄ້າ — ຕັ້ງແຕ່ເລີ່ມຕົ້ນ ຈົນ ຂາຍ ປິດກະ ແລະ ເບິ່ງລາຍງານ. ແຕະຫົວຂໍ້ໃນสารบัญ ເພື່ອໄປຫາเรื่องที่ต้องการ.</p>
+    <div class="chips">
+      <span class="chip">🍜 ຮ້ານອາຫານ</span>
+      <span class="chip">☕ ກາເຟ / ຊານົມ</span>
+      <span class="chip">🚗 ລ້າງລົດ</span>
+      <span class="chip">📱 ຮ້ານມືຖື / ໄອທີ</span>
+      <span class="chip">🛒 ຂອງຊຳ</span>
+      <span class="chip">👕 ເສື້ອຜ້າ</span>
+    </div>
+  </div>
+</header>
 
 <div class="wrap">
+  <div class="layout">
+    <nav class="toc" aria-label="ສາລະບານ">
+      <h2>ສາລະບານ</h2>
+      <div class="toc-scroll">
+        <ol>
+          <li><a href="#s1"><span class="n">1</span>ເລີ່ມຕົ້ນໃຊ້ງານ</a></li>
+          <li><a href="#s2"><span class="n">2</span>ເພີ່ມ &amp; ຈັດການສິນຄ້າ</a></li>
+          <li><a href="#s3"><span class="n">3</span>ຂາຍ ແລະ ຄິດເງິນ</a></li>
+          <li><a href="#s4"><span class="n">4</span>ເປີດ / ປິດກະ</a></li>
+          <li><a href="#s5"><span class="n">5</span>ລະບົບໂຕະ &amp; QR</a></li>
+          <li><a href="#s6"><span class="n">6</span>ຈໍຄົວ</a></li>
+          <li><a href="#s7"><span class="n">7</span>ຄັງ &amp; ວັດຖຸດິບ/ສູດ</a></li>
+          <li><a href="#s8"><span class="n">8</span>ສະມາຊິກ &amp; ໂປຣ</a></li>
+          <li><a href="#s9"><span class="n">9</span>Catalog ຕາມຍີ່ຫໍ້</a></li>
+          <li><a href="#s10"><span class="n">10</span>ໂໝດພິເສດ</a></li>
+          <li><a href="#s11"><span class="n">11</span>ເຄື່ອງພິມ</a></li>
+          <li><a href="#s12"><span class="n">12</span>ລາຍງານ</a></li>
+          <li><a href="#s13"><span class="n">13</span>ໃບ A4 / ໃບສະເໜີ</a></li>
+          <li><a href="#s14"><span class="n">14</span>ຄຳຖາມທີ່ພົບบ่อย</a></li>
+        </ol>
+      </div>
+    </nav>
 
-<div class="toc">
-  <h2>📑 ສາລະບານ</h2>
-  <ol>
-    <li><a href="#start">ເລີ່ມຕົ້ນ — ດາວໂຫຼດ & ສະໝັກຮ້ານ</a></li>
-    <li><a href="#sell">ການຂາຍ (POS) & ຊຳລະເງິນ</a></li>
-    <li><a href="#products">ສິນຄ້າ & ສະຕັອກ (+ ສະແກນເມນູ AI)</a></li>
-    <li><a href="#members">ສະມາຊິກ & ແຕ້ມ</a></li>
-    <li><a href="#promo">ໂປຣໂມຊັນ</a></li>
-    <li><a href="#delivery">Delivery & QR Menu (ລູກຄ້າສັ່ງເອງ)</a></li>
-    <li><a href="#kitchen">ຈໍຄົວ (Kitchen)</a></li>
-    <li><a href="#games">ເກມລຸ້ນໂຊກ (ວົງລໍ້ & ສະລອດ)</a></li>
-    <li><a href="#ai">AI ຜູ້ຊ່ວຍຮ້ານ</a></li>
-    <li><a href="#report">ລາຍງານ & ຈັດການກະ</a></li>
-    <li><a href="#staff">ພະນັກງານ & ສາຂາ</a></li>
-    <li><a href="#settings">ຕັ້ງຄ່າ & ເຄື່ອງພິມ</a></li>
-    <li><a href="#renew">ການຕໍ່ອາຍຸ</a></li>
-  </ol>
+    <main>
+
+      <!-- 1 -->
+      <section class="sec" id="s1" style="--tag:var(--c-sell)">
+        <div class="sec-head"><div class="sec-num">1</div><div class="sec-ico">🚀</div><h3>ເລີ່ມຕົ້ນໃຊ້ງານ</h3></div>
+        <div class="sec-body">
+          <p class="intro">ຕັ້ງຄ່າຮ້ານໃຫ້ພ້ອມຂາຍ ພາຍໃນ 3 ຂັ້ນຕອນ.</p>
+          <ol class="steps">
+            <li><b>ເຂົ້າສູ່ລະບົບ</b> ດ້ວຍ ອີເມວ + ລະຫັດຜ່ານ ທີ່ໄດ້ຮັບ (ໃຊ້ໄດ້ໃນ ມືຖື · ຄອມ · ເວັບ ຂໍ້ມູນກົງກັນ).</li>
+            <li><b>ເລືອກປະເພດຮ້ານ</b> ຕອນສ້າງຮ້ານ (ອາຫານ / ກາເຟ / ລ້າງລົດ / ມືຖື …) → ໄດ້ໝວດສິນຄ້າมาให้เลย.</li>
+            <li>ໄປ <span class="k">☰ ເມນູ → ຕັ້ງຄ່າຮ້ານ</span> → ໃສ່ ຊື່ຮ້ານ · ທີ່ຢູ່ · ເບີໂທ · ໂລໂກ້ · QR ຮັບເງິນ.</li>
+            <li>ຕໍ່ ແລະ ຕັ້ງຄ່າ <b>ເຄື່ອງພິມ</b> (ເບິ່ງຫົວຂໍ້ 11).</li>
+          </ol>
+          <div class="tip"><span class="ti">💡</span><div>ຂໍ້ມູນเก็บใน <b>Cloud</b> — ปลอดภัย ไม่สูญ · เปิดได้หลายเครื่องพร้อมกัน ຂໍ້ມູນຕົງກັນ.</div></div>
+        </div>
+      </section>
+
+      <!-- 2 -->
+      <section class="sec" id="s2" style="--tag:var(--c-sell)">
+        <div class="sec-head"><div class="sec-num">2</div><div class="sec-ico">📦</div><h3>ເພີ່ມ &amp; ຈັດການສິນຄ້າ</h3></div>
+        <div class="sec-body">
+          <p class="intro">ເພີ່ມສິນຄ້າ/ເມນູ ພ້ອມຮູບ ລາຄາ ແລະ ສະຕັອກ.</p>
+          <ol class="steps">
+            <li>ໜ້າຂາຍ → ກົດ <span class="k">➕ ເພີ່ມສິນຄ້າ</span> (ຫຼື ໄປ ຄັງສິນຄ້າ).</li>
+            <li>ໃສ່ <b>ຊື່ · ໝວດ · ລາຄາ · ຮູບ</b> → ເລືອກຮູບແບບການຂາຍ:</li>
+          </ol>
+          <div class="grid2">
+            <div class="mini"><h4>ລາຄາດຽວ</h4><p>ສິນຄ້າ/ເມນູທົ່ວໄປ 1 ລາຄາ</p></div>
+            <div class="mini"><h4>2 ລາຄາ (M/L)</h4><p>ເครื่องดื่ม — ນ້ອຍ/ໃຫຍ່</p></div>
+            <div class="mini"><h4>ໄຊ/ສີ</h4><p>ເສື້ອຜ້າ — S/M/L, ສີ, ສະຕັອກແຍກ</p></div>
+            <div class="mini"><h4>ຫຼາຍໜ່ວຍ</h4><p>ຂາຍເປັນ ອັນ/ກ່ອງ/ແผງ</p></div>
+            <div class="mini"><h4>📱 ໄອທີ/ອຸປะກอน</h4><p>ຕິດຕາມ IMEI + ສະເປັກ + ຮັບประกัน</p></div>
+            <div class="mini"><h4>🥩 ວັດຖຸດິບ/ສູດ</h4><p>ຕັດສະຕັອກร่วม (ເບິ່ງ 7)</p></div>
+          </div>
+          <div class="tip"><span class="ti">🔖</span><div>ໃສ່ <b>ບາໂຄດ</b> ໄດ້ → ສະແກນ/ຍິງ ຫາສິນຄ້າໄວ · ເປີດ <b>ນັບສະຕັອກ</b> ເພື່ອใหเตือนใกล้หมด.</div></div>
+        </div>
+      </section>
+
+      <!-- 3 -->
+      <section class="sec" id="s3" style="--tag:var(--c-sell)">
+        <div class="sec-head"><div class="sec-num">3</div><div class="sec-ico">🛒</div><h3>ຂາຍ ແລະ ຄິດເງິນ</h3></div>
+        <div class="sec-body">
+          <p class="intro">ຈິ້ມ → ຄິດເງິນ → ພິມບິນ ພາຍໃນ 5 ວິນາທີ.</p>
+          <ol class="steps">
+            <li>ກົດເມນູໃສ່ຕະກร้า (ກົດຊ້ຳ = ເພີ່ມຈຳນວນ · ລາຍການດຽວກັນ ຈະ<b>ລວມเป็น 3x</b> ບໍ່ແຍກบรรทัด).</li>
+            <li>ກົດ <span class="k">ຄິດເງິນ</span> → ເລືອກວິທີຊຳລະ:</li>
+          </ol>
+          <div class="chips" style="margin-top:8px">
+            <span class="chip">💵 ເງິນສົດ</span><span class="chip">📲 QR / ໂອນ</span>
+            <span class="chip">💳 ຕິດໜີ້ (ຂາຍເຊື່ອ)</span><span class="chip">➗ ແຍກຈ່າຍ (ສົດ+ໂອນ)</span>
+            <span class="chip">💱 ຮັບเงินต่างประเทศ</span>
+          </div>
+          <ol class="steps" style="margin-top:12px">
+            <li>ໃສ່ ສ່ວນຫຼຸດ / ສະມາຊິກ (ຖ້າມີ) → ຢືนยัน → ພິມບິນ.</li>
+          </ol>
+          <div class="tip"><span class="ti">✏️</span><div>ອອກบิลไปแล้ว ແກ້ວິທีจ่ายได้ — ໄປ <b>ລາຍງານຂາຍ → ແຕะบิล → "ວິທີຈ່າຍ"</b> (ເช่น QR→เงินสด).</div></div>
+        </div>
+      </section>
+
+      <!-- 4 -->
+      <section class="sec" id="s4" style="--tag:var(--c-shift)">
+        <div class="sec-head"><div class="sec-num">4</div><div class="sec-ico">💰</div><h3>ເປີດ / ປິດກະ (ນັບເງິນ)</h3></div>
+        <div class="sec-body">
+          <p class="intro">ຮູ້ຍອດຂາຍທຸກມື້ · ກັນເງິນเสีย/เงินขาด · ກັນລູກນ້ອງໂກງ.</p>
+          <ol class="steps">
+            <li><b>ເປີດກະ:</b> <span class="k">☰ → ຈັດການກະ</span> → ໃສ່ເງິນທອນเริ่มต้น → ເປີດ (ຕ້ອງເປີດກ່ອນຂາຍ).</li>
+            <li><b>ປິດກະ:</b> ກົດຈັດການກະ ອີກຄັ້ງ → ນັບໃບເງິນໃນລິ້ນຊັກ (100,000 ×… ) → ລະບົບບອກ <b>ພໍດີ / ເກີນ / ຂາດ</b>.</li>
+            <li>ຫຼັງປິດກະ → ພິມ <b>ໃບສະຫຼຸບກະ (Z-Report)</b> ອັດຕะโนมัติ.</li>
+          </ol>
+          <div class="tip"><span class="ti">📜</span><div>ເບິ່ງຍ້ອນຫຼັງ: <b>☰ → ປະຫວັດກະ</b> — ໃຜເປີດ/ປິດ · ຍອດຂາຍ · ເກີນ-ຂາດ · ພິມຊ້ຳໄດ້.</div></div>
+        </div>
+      </section>
+
+      <!-- 5 -->
+      <section class="sec" id="s5" style="--tag:var(--c-table)">
+        <div class="sec-head"><div class="sec-num">5</div><div class="sec-ico">🍽️</div><h3>ລະບົບໂຕະ &amp; ສັ່ງຜ່ານ QR</h3></div>
+        <div class="sec-body">
+          <p class="intro">ຮ້ານອາຫານ — ເປີດບິນຄ້າງທີ່ໂຕะ ຈ່າຍທีหลัง.</p>
+          <p><b>ເປີດใช้:</b> ຕັ້ງຄ່າຮ້ານ → ເປີດ <span class="k">🍽️ ໃຊ້ລະບົບໂຕะ</span></p>
+          <ol class="steps">
+            <li><b>ພະນັກງານສັ່ງ:</b> ເລືອกເມນູ → <span class="k">ສົ່ງເຂົ້າໂຕະ</span> → ເລືອกເລກໂຕะ → ຄົວໄດ້ໃບเอง.</li>
+            <li><b>ລູກຄ້າ QR:</b> ສະແກນ QR ทีโต๊ะ → สั่งเอง → ອໍເດີเข้าอัตโนมัติ.</li>
+            <li><b>ຄິດເງิน:</b> <span class="k">☰ → Monitor (ດຶງບິນ)</span> → ແຕະໂຕะ → ຄິດเงิน.</li>
+          </ol>
+          <div class="grid2">
+            <div class="mini"><h4>ຍ້າຍໂຕะ</h4><p>ແຕะໂຕะ → "ຍ້າຍໂຕະ" → เลือกโต๊ะใหม่</p></div>
+            <div class="mini"><h4>ລວມໂຕะ</h4><p>ແຕะໂຕะหลัก → "ລວມໂຕະ"</p></div>
+            <div class="mini"><h4>ແກ້/ລົບ ລາຍการ</h4><p>ปุ่ม − / + / 🗑️ ต่อรายการ</p></div>
+            <div class="mini"><h4>ພິມເຊັກບິນ</h4><p>ให้ลูกค้าดูก่อนจ่าย</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6 -->
+      <section class="sec" id="s6" style="--tag:var(--c-kitchen)">
+        <div class="sec-head"><div class="sec-num">6</div><div class="sec-ico">🍳</div><h3>ຈໍຄົວ (Kitchen)</h3></div>
+        <div class="sec-body">
+          <p class="intro">ອໍເດີເด้งเข้าครัว → ทำเสร็จกด "ເสิร์ฟแล้ว".</p>
+          <ol class="steps">
+            <li><span class="k">☰ → ຈໍຄົວ</span> → ເປີດຄ້າງไว้บนเครื่องในครัว.</li>
+            <li>ອໍເດີໃໝ່ = ມີສຽง ding + ຂຶ້ນคอลัมน์ "ລໍຖ້າ".</li>
+            <li>ເລກໂຕะ <b>ໂຕໃຫຍ່ชัด</b> ເທ່າໃບເຊັກບິນ.</li>
+            <li>ເປີດ 🖨️ ມุมขวาบน = <b>ພິມໃບຄົວອັດຕະໂນມັດ</b> เมื่อออเดอร์เข้า.</li>
+          </ol>
+          <div class="tip"><span class="ti">🖨️</span><div>ຮ້ານ<b>ເครื่องพิมพ์เดียว</b> (ບໍ່เปิดจอครัว) → ຕັ້ງຄ່າ → "ພິມอໍเดอร์โต๊ะ/QR อัตโนมัติ" ໄດ້เหมือนกัน.</div></div>
+        </div>
+      </section>
+
+      <!-- 7 -->
+      <section class="sec" id="s7" style="--tag:var(--c-stock)">
+        <div class="sec-head"><div class="sec-num">7</div><div class="sec-ico">🥩</div><h3>ຄັງ &amp; ວັດຖຸດິບ/ສູດ</h3></div>
+        <div class="sec-body">
+          <p class="intro">ນັບສະຕັອກ · ຮັບເຄື່ອງเข้า · ຫຼາຍເມນูตัดวัตถุดิบก้อนเดียวกัน.</p>
+          <p><b>ຄັງສິນຄ້າ:</b> <span class="k">☰ → ຄັງ</span> → ຮັບເຄື່ອງเข้า · ນັບໃໝ່ · ຕັດຂອງเสีย · ເตือนใกล้หมด/หมดอายุ.</p>
+          <p style="margin-top:6px"><b>🥩 ວັດຖຸດິບร่วม</b> (ຮ້ານອາຫານ/ເครื่องดื่ม):</p>
+          <ol class="steps">
+            <li><span class="k">☰ → ວັດຖຸດິບ (ຄັງຄົວ)</span> → ເพิ่ม "ປາดิบ/ນົມ/ແກ້ວ" + <b>ຈຳນວນ + ໜ່ວຍ</b> (ໂຕ/ml/ກຣາມ).</li>
+            <li>ແກ້ເມນູ → ສ່ວນ <b>ສູດ</b> → ເລືອกວັດຖຸດິບ + ຈຳนวนต่อจาน (ເครื่องดื่มใส่ M/L แยกได้).</li>
+            <li>ຂາຍ → <b>ຕັດວັດຖຸດິບໃຫ້ເອງ</b> · ท็อปปิ้งก็ตัดของมันเอง.</li>
+          </ol>
+          <div class="tip"><span class="ti">📊</span><div>ໃນໜ້າວັດຖຸດິບ ກົດ 📊 → ເບิ่ง <b>ວັດຖຸດิบใช้ไป + ต้นทุนต่อจาน (กำไร/จาน)</b>.</div></div>
+        </div>
+      </section>
+
+      <!-- 8 -->
+      <section class="sec" id="s8" style="--tag:var(--c-member)">
+        <div class="sec-head"><div class="sec-num">8</div><div class="sec-ico">👥</div><h3>ສະມາຊິກ &amp; ໂປຣໂມຊັ່ນ</h3></div>
+        <div class="sec-body">
+          <p class="intro">ລູກຄ້າประจำ — ສະສົມແຕ້ม · ສ່ວນຫຼຸດ · ໂปรโมชั่น.</p>
+          <ol class="steps">
+            <li>ເພີ່ມສະມາຊິກ (ຊື່ + ເບີໂທ) → ตอนคิดเงินเลือกสมาชิก → ໄດ້ແຕ້ມอัตโนมัติ.</li>
+            <li>ຕັ້ງ <b>ໂປຣໂມຊັ่น</b> (ຊື້ X ແຖມ Y / ຫຼຸດ %) → ໃຊ້ຕอนขายอัตโนมัติ.</li>
+            <li>ຂາຍເชื่อ/ຕິດໜີ້ → บันทึกยอดค้าง · เก็บเงินภายหลัง.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 9 -->
+      <section class="sec" id="s9" style="--tag:var(--c-catalog)">
+        <div class="sec-head"><div class="sec-num">9</div><div class="sec-ico">📖</div><h3>Catalog — ລາຍการสินค้าตามยี่ห้อ</h3></div>
+        <div class="sec-body">
+          <p class="intro">ຮ້ານໄອທີ/ມືຖື — ໂຊว์สินค้าแยกยี่ห้อ (acer/ASUS…) ໃຫ້ລູກຄ້າເບິ່ງ.</p>
+          <ol class="steps">
+            <li>ໃສ່ <b>ຍີ່ຫໍ້</b> ໃຫ້ສินค้าไอที (ตอนแก้สินค้า → ช่อง Brand).</li>
+            <li><span class="k">☰ → ລາຍการສິນค้า ตามยี่ห้อ</span> → ຈັດກຸ່ມ +acer / +ASUS ພັບ-ກາງໄດ້.</li>
+            <li>ແຕะเมนู = ເพิ่มลงตะกร้าขาย · ปุ่ม ⬆️ = ສ่งออก PDF ส่งลูกค้า.</li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 10 -->
+      <section class="sec" id="s10" style="--tag:var(--c-special)">
+        <div class="sec-head"><div class="sec-num">10</div><div class="sec-ico">✨</div><h3>ໂໝດພິເສດ</h3></div>
+        <div class="sec-body">
+          <p class="intro">ເปิดตามประเภทร้าน (ຕັ້ງຄ່າຮ້ານ).</p>
+          <div class="grid2">
+            <div class="mini"><h4>🚗 ໂໝດລ້າງລົດ</h4><p>ໃສ່ ທະບຽນລົດ + ເລືອกพนักงานที่ล้าง → ຄ່າຄอมต่อคัน + ລາຍງານຄ່າຄอม</p></div>
+            <div class="mini"><h4>🌾 ຮັບຊື້ພืด (ສາງ)</h4><p>ຮັບຊື້ຢາງ/ມັນຕົ້ນ/ສາລີ ตามน้ำหนัก — ເປີດสาง/ຊื้/ปิดสาง</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 -->
+      <section class="sec" id="s11" style="--tag:var(--c-print)">
+        <div class="sec-head"><div class="sec-num">11</div><div class="sec-ico">🖨️</div><h3>ເຄື່ອງພິມ (Bluetooth / USB / LAN)</h3></div>
+        <div class="sec-body">
+          <p class="intro">ຮອງຮັບ ເครื่องพิมพ์ความร้อน 80mm/58mm ຄົບ 3 ແບບ.</p>
+          <div class="grid2">
+            <div class="mini"><h4>📱 Bluetooth (ມືຖື)</h4><p>ຈັບຄູ່ BT → ຕັ້ງຄ່າ → ເลือกเป็นเครื่องรับเงิน/ครัว → ตั้ง 80mm</p></div>
+            <div class="mini"><h4>🖥️ USB (ຄอมพิวเตอร์)</h4><p>ຕໍ່ USB → ລົງໄดรເวີ → ຕັ້ງຄ່າ → การ์ด "ເครื่องพิมพ์ Windows" → ເລືອກເครื่อง → ທດสอบ</p></div>
+            <div class="mini"><h4>🌐 LAN / WiFi</h4><p>ໃສ່ IP ຂອງเครื่องพิมพ์ + Port 9100 → ບັນທຶກ → ທดสอบ</p></div>
+          </div>
+          <div class="tip"><span class="ti">⚠️</span><div>ໃຊ້ <b>USB</b> → ໃຫ້<b>ລ້າງຊ່ອງ Network IP ອອກ</b> (ຖ້າมีค้างไว้จะขัดกัน) · ໃบไม่ออก = เช็คว่าเลือกเครื่องถูก + ตั้ง 80mm.</div></div>
+        </div>
+      </section>
+
+      <!-- 12 -->
+      <section class="sec" id="s12" style="--tag:var(--c-report)">
+        <div class="sec-head"><div class="sec-num">12</div><div class="sec-ico">📊</div><h3>ລາຍງານ</h3></div>
+        <div class="sec-body">
+          <p class="intro">ຮູ້ວ່າຂາຍดีแค่ไหน · กำไรเท่าไหร่ · อะไรขายดี.</p>
+          <div class="grid2">
+            <div class="mini"><h4>ຍອດຂາຍ / ກຳໄລ</h4><p>ตามช่วงวัน · เมนูขายดี · Export Excel</p></div>
+            <div class="mini"><h4>ວັດຖຸດิบ + ต้นทุน/จาน</h4><p>ใช้ไปเท่าไหร่ · กำไรต่อจาน</p></div>
+            <div class="mini"><h4>ຄ່າຄอมพนักงาน</h4><p>ล้างรถ — คัน/ค่าคอม/คน</p></div>
+            <div class="mini"><h4>ປະຫວັດກະ + ສະຕັອກ</h4><p>เปิด-ปิดกะ · การเคลื่อนไหวสต๊อก</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13 -->
+      <section class="sec" id="s13" style="--tag:var(--c-sell)">
+        <div class="sec-head"><div class="sec-num">13</div><div class="sec-ico">🧾</div><h3>ໃບ A4 / ໃບສະເໜີລາຄາ</h3></div>
+        <div class="sec-body">
+          <p class="intro">ໃບเสนอราคา / ໃບเสร็จ / ໃบส่งของ แບບ A4 (ຮ້ານໄอที/ขายส่ง).</p>
+          <ol class="steps">
+            <li>ໃນຕะกร้า → ເລືອกออก A4 → ເລືອกประเภท (ໃບສະເໜี/ໃบเสร็จ/ໃบส่งของ).</li>
+            <li>ໃສ່ ຊื่ลูกค้า · ສ່ວນຫຼຸດ · ຕິກ QR / เงื่อนไข → ພິມ ຫຼື ບันทึก PDF.</li>
+          </ol>
+          <div class="tip"><span class="ti">📄</span><div>ລາຍการหลาย → ໄຫຼໄປໜ້າ 2, 3 ເອง ບໍ່ຕົກຂອບ · ตัวหนังสือลาวถูกต้อง.</div></div>
+        </div>
+      </section>
+
+      <!-- 14 -->
+      <section class="sec" id="s14" style="--tag:var(--c-print)">
+        <div class="sec-head"><div class="sec-num">14</div><div class="sec-ico">❓</div><h3>ຄຳຖາມທີ່ພົບບ່ອຍ</h3></div>
+        <div class="sec-body">
+          <div class="grid2">
+            <div class="mini"><h4>ໃຊ້ອອฟไลน์ໄດ້ບໍ?</h4><p>ມีเก็บชั่วคราว · ต้องมีเน็ตซิงค์ขึ้น Cloud</p></div>
+            <div class="mini"><h4>ຫຼາຍສາຂາ/ເครื่อง?</h4><p>ໄດ້ — ຂໍ້ມູນຕົງກັນ Cloud ทุกเครื่อง</p></div>
+            <div class="mini"><h4>ພິມบิลไม่ออก?</h4><p>เช็คเครื่องพิมพ์ + 80mm · USB=ล้าง Network IP</p></div>
+            <div class="mini"><h4>ຍอดขายเป็น 0 ตอนปิดกะ?</h4><p>อัปเดตแอปล่าสุด (แก้แล้ว v2.25.1+)</p></div>
+            <div class="mini"><h4>ຮ້ານอะไรใช้ได้?</h4><p>อาหาร·กาแฟ·ล้างรถ·มือถือ·ของชำ·เสื้อผ้า·อะไหล่ …</p></div>
+            <div class="mini"><h4>ລືมລະຫัสผ่าน?</h4><p>ทักผู้ดูแลระบบ → รีเซ็ตให้</p></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
 </div>
 
-<section id="start">
-  <h2 class="sec">1 · ເລີ່ມຕົ້ນ — ດາວໂຫຼດ & ສະໝັກຮ້ານ</h2>
-  <svg class="ill" viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg">
-    <rect x="80" y="6" width="120" height="158" rx="16" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <path d="M80 22a16 16 0 0 1 16-16h88a16 16 0 0 1 16 16v52H80z" fill="#F57C00"/>
-    <circle cx="140" cy="40" r="15" fill="#fff" opacity=".25"/>
-    <text x="140" y="46" font-size="16" text-anchor="middle">🛒</text>
-    <text x="140" y="66" fill="#fff" font-size="9" font-weight="700" text-anchor="middle" font-family="'Noto Sans Lao',sans-serif">Annie KaiyDee</text>
-    <rect x="96" y="86" width="88" height="14" rx="7" fill="#F7F8FA"/>
-    <rect x="96" y="106" width="88" height="14" rx="7" fill="#F7F8FA"/>
-    <rect x="96" y="128" width="88" height="22" rx="11" fill="#F57C00"/>
-    <text x="140" y="143" fill="#fff" font-size="9" font-weight="700" text-anchor="middle" font-family="'Noto Sans Lao',sans-serif">ສະໝັກ / ເຂົ້າສູ່ລະບົບ</text>
-  </svg>
-  <ol class="steps">
-    <li>ດາວໂຫຼດແອັບ (ໄຟລ໌ APK) ລົງມືຖື Android ແລ້ວຕິດຕັ້ງ</li>
-    <li>ເປີດແອັບ → ກົດ <b>"ເປີດຮ້ານໃໝ່ (ທົດລອງຟຣີ 7 ມື້)"</b></li>
-    <li>ປ້ອນ ຊື່, ອີເມວ, ລະຫັດຜ່ານ → ກົດ ສະໝັກ</li>
-    <li>ເຂົ້າສູ່ລະບົບດ້ວຍ ອີເມວ + ລະຫັດຜ່ານ → ໃຊ້ໄດ້ເລີຍ!</li>
-  </ol>
-  <div class="tip">💡 ທົດລອງໃຊ້ຟຣີ 7 ມື້ ໄດ້ຄົບທຸກຟີເຈີ — ບໍ່ຕ້ອງຈ່າຍລ່ວງໜ້າ</div>
-  <a class="top" href="#">↑ ກັບໄປສາລະບານ</a>
-</section>
-
-<section id="sell">
-  <h2 class="sec">2 · ການຂາຍ (POS) & ຊຳລະເງິນ</h2>
-  <svg class="ill" viewBox="0 0 280 170" xmlns="http://www.w3.org/2000/svg">
-    <rect x="20" y="8" width="240" height="154" rx="14" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <path d="M20 22a14 14 0 0 1 14-14h212a14 14 0 0 1 14 14v14H20z" fill="#F57C00"/>
-    <text x="34" y="26" fill="#fff" font-size="10" font-weight="700" font-family="'Noto Sans Lao',sans-serif">ໜ້າຂາຍ</text>
-    <!-- product grid -->
-    <g>
-      <rect x="34" y="48" width="62" height="46" rx="8" fill="#FFF8F1" stroke="#FFE0C2"/>
-      <circle cx="50" cy="64" r="8" fill="#8D6E63"/><text x="64" y="78" font-size="8" fill="#F57C00" font-weight="700">25,000</text>
-      <circle cx="86" cy="86" r="7" fill="#F57C00"/><text x="86" y="89" font-size="9" fill="#fff" text-anchor="middle">+</text>
-      <rect x="104" y="48" width="62" height="46" rx="8" fill="#FFF8F1" stroke="#FFE0C2"/>
-      <circle cx="120" cy="64" r="8" fill="#66BB6A"/><text x="134" y="78" font-size="8" fill="#F57C00" font-weight="700">25,000</text>
-      <circle cx="156" cy="86" r="7" fill="#F57C00"/><text x="156" y="89" font-size="9" fill="#fff" text-anchor="middle">+</text>
-    </g>
-    <!-- cart -->
-    <rect x="178" y="48" width="70" height="100" rx="8" fill="#FFF3E0" stroke="#FFE0C2"/>
-    <text x="213" y="62" font-size="9" fill="#5D4037" text-anchor="middle" font-weight="700">🛒 ກະຕ່າ</text>
-    <rect x="186" y="70" width="54" height="8" rx="4" fill="#fff"/>
-    <rect x="186" y="84" width="54" height="8" rx="4" fill="#fff"/>
-    <rect x="186" y="124" width="54" height="18" rx="9" fill="#22A45D"/>
-    <text x="213" y="136" font-size="8" fill="#fff" text-anchor="middle" font-weight="700" font-family="'Noto Sans Lao',sans-serif">ຄິດເງິນ</text>
-  </svg>
-  <ol class="steps">
-    <li>ເລືອກໝວດ (ເຄື່ອງດື່ມ/ອາຫານ...) ແລ້ວກົດ <b>+</b> ໃສ່ສິນຄ້າລົງກະຕ່າ</li>
-    <li>ເລືອກຂະໜາດ (M/L), ລະດັບນ້ຳກ້ອນ, ໝາຍເຫດ (ຖ້າມີ)</li>
-    <li>ກວດກະຕ່າ → ກົດ <b>ຄິດເງິນ</b></li>
-    <li>ໃນໜ້າຊຳລະເງິນ: ເລືອກ <b>ສະມາຊິກ</b> (ຖ້າມີ) + ໃສ່ <b>ສ່ວນຫຼຸດ</b> ໄດ້</li>
-    <li>ເລືອກວິທີຈ່າຍ: <b>ເງິນສົດ / QR / ແຍກຈ່າຍ</b></li>
-    <li>ໃສ່ເງິນທີ່ຮັບມາ → ລະບົບคำนวณເງິນທອນໃຫ້ → ກົດ <b>ຢືນຢັນ</b></li>
-  </ol>
-  <div class="tip">🖨️ ຖ້າເຊື່ອມເຄື່ອງພິມໄວ້ ໃບບິນຈະພິມອັດຕະໂນມັດ</div>
-  <a class="top" href="#">↑ ກັບໄປສາລະບານ</a>
-</section>
-
-<section id="products">
-  <h2 class="sec">3 · ສິນຄ້າ & ສະຕັອກ</h2>
-  <svg class="ill" viewBox="0 0 280 150" xmlns="http://www.w3.org/2000/svg">
-    <rect x="20" y="8" width="240" height="134" rx="14" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <path d="M20 22a14 14 0 0 1 14-14h212a14 14 0 0 1 14 14v14H20z" fill="#F57C00"/>
-    <text x="34" y="26" fill="#fff" font-size="10" font-weight="700" font-family="'Noto Sans Lao',sans-serif">ຄັງສິນຄ້າ</text>
-    <circle cx="238" cy="22" r="9" fill="#fff" opacity=".25"/><text x="238" y="26" font-size="10" text-anchor="middle">📷</text>
-    <g font-family="'Noto Sans Lao',sans-serif">
-      <rect x="34" y="48" width="212" height="26" rx="8" fill="#FFF8F1"/><circle cx="48" cy="61" r="7" fill="#8D6E63"/><text x="62" y="65" font-size="9">ຊານົມໄຂ່ມຸກ — 25,000</text>
-      <rect x="34" y="80" width="212" height="26" rx="8" fill="#FFF8F1"/><circle cx="48" cy="93" r="7" fill="#66BB6A"/><text x="62" y="97" font-size="9">ຊາเขียว — 25,000</text>
-      <rect x="34" y="112" width="212" height="22" rx="8" fill="#FFF3E0" stroke="#FFE0C2"/><text x="140" y="126" font-size="9" fill="#F57C00" text-anchor="middle" font-weight="700">📷 ສະແກນເມນູ ດ້ວຍ AI</text>
-    </g>
-  </svg>
-  <h3>ເພີ່ມ/ແກ້ສິນຄ້າ</h3>
-  <ul class="dots">
-    <li>ໜ້າຂາຍ → ກົດ <b>+</b> (ມຸມລຸ່ມ) ເພື່ອເພີ່ມສິນຄ້າໃໝ່</li>
-    <li>ກົດ ✏️ ເທິງຮູບສິນຄ້າ ເພື່ອແກ້ໄຂ (ຊື່, ລາຄາ M/L, ຕົ້ນທຶນ, ຮູບ)</li>
-  </ul>
-  <h3>📸 ສະແກນເມນູ ດ້ວຍ AI</h3>
-  <ol class="steps">
-    <li>ໄປ ເມນູ → <b>ຄັງສິນຄ້າ</b> → ກົດໄອຄອນ ສະແກນ (ມຸມຂວາ)</li>
-    <li>ຖ່າຍຮູບ ຫຼື ເລືອກຮູບ ເມນູ/ປ້າຍລາຄາ</li>
-    <li>AI ຈະອ່ານ ຊື່+ລາຄາ ໃຫ້ → ກວດ/ແກ້ → ກົດ ບັນທຶກ</li>
-  </ol>
-  <div class="warn">⚠️ ສະແກນເມນູ ໃຊ້ AI — ຕ້ອງໃສ່ Gemini API Key ກ່ອນ (ເບິ່ງຫົວข้อ AI)</div>
-  <h3>ຈັດການສະຕັອກ</h3>
-  <ul class="dots">
-    <li>ໄປ ເມນູ → <b>ຄັງສິນຄ້າ</b> → ເປີດ "ຕັດສະຕັອກ" ໃນສິນຄ້າທີ່ຕ້ອງการ</li>
-    <li>ລະບົບຕັດສະຕັອກອັດຕະໂນມັດ ເມື່ອຂາຍ + ເຕືອນเมื่อໃກ້ໝົด</li>
-  </ul>
-  <a class="top" href="#">↑ ກັບໄປສາລະບານ</a>
-</section>
-
-<section id="members">
-  <h2 class="sec">4 · ສະມາຊິກ & ແຕ້ມ</h2>
-  <svg class="ill" viewBox="0 0 280 130" xmlns="http://www.w3.org/2000/svg">
-    <rect x="20" y="8" width="240" height="114" rx="14" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <path d="M20 22a14 14 0 0 1 14-14h212a14 14 0 0 1 14 14v14H20z" fill="#F57C00"/>
-    <text x="34" y="26" fill="#fff" font-size="10" font-weight="700" font-family="'Noto Sans Lao',sans-serif">ສະມາຊິກ</text>
-    <g font-family="'Noto Sans Lao',sans-serif">
-      <rect x="34" y="48" width="212" height="30" rx="10" fill="#fff" stroke="#EFE6DC"/>
-      <circle cx="52" cy="63" r="11" fill="#FFF3E0"/><text x="52" y="67" font-size="11" text-anchor="middle" fill="#F57C00" font-weight="700">ມ</text>
-      <text x="70" y="60" font-size="9" font-weight="700">ນາງ ມະນີ</text><text x="70" y="71" font-size="7" fill="#9CA3AF">020 555 0172</text>
-      <rect x="200" y="54" width="38" height="18" rx="9" fill="#FFF3E0"/><text x="219" y="66" font-size="9" fill="#E65100" text-anchor="middle" font-weight="700">120 ⭐</text>
-      <rect x="34" y="86" width="212" height="26" rx="10" fill="#FFF3E0" stroke="#FFE0C2"/><text x="140" y="103" font-size="9" fill="#F57C00" text-anchor="middle" font-weight="700">＋ ເພີ່ມສະມາຊິກ</text>
-    </g>
-  </svg>
-  <ol class="steps">
-    <li>ໄປ ເມນູ → <b>ສະມາຊິກ</b></li>
-    <li>ກົດ <b>ເພີ່ມສະມາຊິກ</b> (ມຸມລຸ່ມຂວາ) → ໃສ່ ຊື່ + ເບີໂທ</li>
-    <li>ລູກຄ້າຊື້ເຄື່ອງ → ເລືອກສະมาชิກໃນໜ້າຊຳລະເງິນ → ໄດ້ແຕ້ມອັດຕະໂນມັດ</li>
-    <li>ປັບແຕ້ມເອງ: ແຕะຊື່ສະมาชิກ → <b>ປັບແຕ້ມ</b> (ເພີ່ມ/ລົບ)</li>
-  </ol>
-  <div class="tip">⭐ ແຕ້ມ ໃຊ້ແລກຂອງລາງວັນ ຫຼື ຫຼິ້ນເກມລຸ້ນໂຊກ ໄດ້</div>
-  <a class="top" href="#">↑ ກັບໄປສາລະບານ</a>
-</section>
-
-<section id="promo">
-  <h2 class="sec">5 · ໂປຣໂມຊັນ</h2>
-  <svg class="ill" viewBox="0 0 280 110" xmlns="http://www.w3.org/2000/svg">
-    <rect x="20" y="8" width="240" height="94" rx="14" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <g font-family="'Noto Sans Lao',sans-serif">
-      <rect x="34" y="22" width="212" height="32" rx="10" fill="#FFF3E0" stroke="#FFE0C2"/>
-      <text x="46" y="42" font-size="14">🎁</text><text x="68" y="42" font-size="10" font-weight="700">ຊື້ 1 ແຖມ 1</text>
-      <rect x="34" y="62" width="212" height="30" rx="10" fill="#E8F5E9"/>
-      <text x="46" y="81" font-size="14">🏷️</text><text x="68" y="81" font-size="10" font-weight="700" fill="#2E7D32">ສ່ວນຫຼຸດ 10%</text>
-    </g>
-  </svg>
-  <ol class="steps">
-    <li>ໄປ ເມນູ → <b>ໂປຣໂມຊັນ</b> → ກົດ ເພີ່ມ</li>
-    <li>ເລືອກປະເພດ: <b>ຊື້1ແຖມ1</b>, <b>ສ່ວນຫຼຸດ %</b>, <b>ສ່ວນຫຼຸດ ກີບ</b></li>
-    <li>ຕັ້ງຍອດຂັ້ນຕ່ຳ + ວັນທີ່ໃຊ້ໄດ້ → ບັນທຶກ</li>
-  </ol>
-  <p>ເມື່ອລູກຄ້າຊື້ຄົບເງື່ອນໄຂ → ສ່ວນຫຼຸດໃຊ້ອັດຕະໂນມັດ ຕอนຊຳລະເງິນ</p>
-  <a class="top" href="#">↑ ກັບໄປສາລະບານ</a>
-</section>
-
-<section id="delivery">
-  <h2 class="sec">6 · Delivery & QR Menu (ລູກຄ້າສັ່ງເອງ)</h2>
-  <svg class="ill" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
-    <rect x="20" y="8" width="240" height="124" rx="14" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <path d="M20 22a14 14 0 0 1 14-14h212a14 14 0 0 1 14 14v14H20z" fill="#F57C00"/>
-    <text x="34" y="26" fill="#fff" font-size="10" font-weight="700" font-family="'Noto Sans Lao',sans-serif">Delivery</text>
-    <g font-family="'Noto Sans Lao',sans-serif">
-      <rect x="34" y="48" width="212" height="74" rx="10" fill="#FFF8F1" stroke="#FFE0C2"/>
-      <text x="46" y="66" font-size="9" font-weight="700">#WEB-1781 · 134,000 ₭</text>
-      <text x="46" y="84" font-size="9">📍 ບ້ານ... &#160;&#160; 📞 020...</text>
-      <rect x="46" y="94" width="44" height="20" rx="10" fill="#fff" stroke="#F57C00"/><text x="68" y="107" font-size="8" fill="#F57C00" text-anchor="middle" font-weight="700">🖨️ ພິມ</text>
-      <rect x="96" y="94" width="56" height="20" rx="10" fill="#25D366"/><text x="124" y="107" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">ແຊร์</text>
-      <rect x="158" y="94" width="44" height="20" rx="10" fill="#fff" stroke="#9CA3AF"/><text x="180" y="107" font-size="8" text-anchor="middle">⋮ ເພີ່ມ</text>
-    </g>
-  </svg>
-  <h3>ໃຫ້ລູກຄ້າສັ່ງຜ່ານເວັບ</h3>
-  <ul class="dots">
-    <li>ແຕ່ລະໂຕະມີ QR Code → ລູກຄ້າສະແກນ → ສັ່ງເອງ → ອໍເດີเข้าแอป</li>
-    <li>ສຳລັບ Delivery: ລູກຄ້າ <b>ປັກໝຸດ GPS</b> ໃຫ້ rider ໄປຖືກ</li>
-  </ul>
-  <h3>ຈັດການອໍເດີ Delivery</h3>
-  <ol class="steps">
-    <li>ໄປ ເມນູ → <b>Delivery</b> → ເບິ່ງອໍເດີ (ກຳລັງดำเนิน/ສຳເລັດ/ຍົກເລີກ)</li>
-    <li>ແຕະອໍເດີ → ເບິ່ງລາຍລະອຽດ + ໃສ່ <b>ຄ່າຈັດສົ່ງ</b></li>
-    <li>ກົດ ⋮ ເພື່ອ: <b>ພິມບິນ</b>, <b>ແຊร์ໃຫ້ລູກຄ້າ (WhatsApp)</b>, <b>ກ໊อปปี้</b>, <b>ພິมໃບຄົວ</b></li>
-    <li>ໂທຫາລູກຄ້າ / ເປີດแผนที่ ໄດ້ຈากปุ่มในออเดอร์</li>
-  </ol>
-  <a class="top" href="#">↑ ກັບໄປສາລະບານ</a>
-</section>
-
-<section id="kitchen">
-  <h2 class="sec">7 · ຈໍຄົວ (Kitchen)</h2>
-  <svg class="ill" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
-    <rect x="20" y="8" width="240" height="104" rx="14" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <g font-family="'Noto Sans Lao',sans-serif">
-      <rect x="34" y="20" width="212" height="80" rx="10" fill="#fff" stroke="#EFE6DC"/>
-      <path d="M34 30a10 10 0 0 1 10-10h192a10 10 0 0 1 10 10v12H34z" fill="#F57C00"/>
-      <text x="44" y="35" font-size="9" fill="#fff" font-weight="700">🍳 ໂຕະ: 7</text>
-      <rect x="200" y="24" width="38" height="13" rx="6" fill="#fff"/><text x="219" y="34" font-size="7" fill="#F57C00" text-anchor="middle" font-weight="700">ລໍຄິວ</text>
-      <text x="44" y="58" font-size="9"><tspan fill="#F57C00" font-weight="700">2x</tspan> ເຝີງົວ (M)</text>
-      <rect x="44" y="72" width="40" height="20" rx="10" fill="#fff" stroke="#F57C00"/><text x="64" y="85" font-size="8" fill="#F57C00" text-anchor="middle" font-weight="700">🖨️ ພິມ</text>
-      <rect x="90" y="72" width="146" height="20" rx="10" fill="#1E88E5"/><text x="163" y="85" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">ຮັບອໍເດີ້ (ເຂົ້າຄົວ)</text>
-    </g>
-  </svg>
-  <ul class="dots">
-    <li>ໄປ ເມນູ → <b>ຈໍຄົວ</b> → ເບິ່ງອໍເດີທີ່ຕ້ອງทำ (real-time)</li>
-    <li>ກົດ <b>ຮັບອໍເດີ້ (ເຂົ້າຄົວ)</b> → ກຳລັງเฮ็ด → <b>ເສີບແລ້ວ</b></li>
-    <li>ມີเครื่องเดียว? ກົດ <b>ພິມ</b> → ໃບຄົວออกเครื่องหลัก → ສົ່ງໃຫ້ແມ່ຄົວ</li>
-  </ul>
-  <a class="top" href="#">↑ ກັບໄປສາລະບານ</a>
-</section>
-
-<section id="games">
-  <h2 class="sec">8 · ເກມລຸ້ນໂຊກ (ດຶງดูดลูกค้า)</h2>
-  <svg class="ill" viewBox="0 0 280 130" xmlns="http://www.w3.org/2000/svg">
-    <!-- wheel -->
-    <circle cx="80" cy="65" r="46" fill="#FFC107"/>
-    <circle cx="80" cy="65" r="40" fill="#AB47BC"/>
-    <path d="M80 65 L80 25 A40 40 0 0 1 115 50 Z" fill="#00897B"/>
-    <path d="M80 65 L115 50 A40 40 0 0 1 100 100 Z" fill="#E91E63"/>
-    <path d="M80 65 L100 100 A40 40 0 0 1 50 95 Z" fill="#EF5350"/>
-    <path d="M80 65 L50 95 A40 40 0 0 1 80 25 Z" fill="#42A5F5"/>
-    <circle cx="80" cy="65" r="14" fill="#fff"/><text x="80" y="69" font-size="8" fill="#F57C00" text-anchor="middle" font-weight="700">SPIN</text>
-    <!-- slot -->
-    <rect x="150" y="30" width="110" height="70" rx="12" fill="#311B92" stroke="#FFC107" stroke-width="3"/>
-    <rect x="160" y="45" width="26" height="40" rx="6" fill="#fff"/><text x="173" y="73" font-size="18" text-anchor="middle">7️⃣</text>
-    <rect x="192" y="45" width="26" height="40" rx="6" fill="#fff"/><text x="205" y="73" font-size="18" text-anchor="middle">7️⃣</text>
-    <rect x="224" y="45" width="26" height="40" rx="6" fill="#fff"/><text x="237" y="73" font-size="18" text-anchor="middle">7️⃣</text>
-    <text x="205" y="118" font-size="9" text-anchor="middle" fill="#F57C00" font-weight="700" font-family="'Noto Sans Lao',sans-serif">JACKPOT 🎉</text>
-  </svg>
-  <ul class="dots">
-    <li><b>ວົງລໍ້ລຸ້ນໂຊກ</b> — ໃຊ້ 20 ແຕ້ມ/ຮอบ ໝຸນຮັບລາงวัล (ສ້າງລາງວັນເອງໄດ້)</li>
-    <li><b>ເກມສະລອด</b> — ໃຊ້ 50 ແຕ້ມ/ຮອບ · 7️⃣7️⃣7️⃣ = 1000 ແຕ້ມ!</li>
-    <li>ມີสຽง + ສັ່ນ + confetti — ກົດ 🔇 ປິດສຽງໄດ້</li>
-  </ul>
-  <div class="tip">🎁 ໃຫ້ລູກຄ້າຫຼິ້ນຕอนซื้อครบยอด — ດຶງໃຫ້ກັບมาซื้ออีก</div>
-  <a class="top" href="#">↑ ກັບໄປສาລະບານ</a>
-</section>
-
-<section id="ai">
-  <h2 class="sec">9 · AI ຜູ້ຊ່ວຍຮ້ານ</h2>
-  <svg class="ill" viewBox="0 0 280 130" xmlns="http://www.w3.org/2000/svg">
-    <rect x="20" y="8" width="240" height="114" rx="14" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <path d="M20 22a14 14 0 0 1 14-14h212a14 14 0 0 1 14 14v14H20z" fill="#F57C00"/>
-    <text x="34" y="26" fill="#fff" font-size="10" font-weight="700" font-family="'Noto Sans Lao',sans-serif">🧠 ຜູ້ຊ່ວຍຮ້ານ AI</text>
-    <g font-family="'Noto Sans Lao',sans-serif">
-      <rect x="120" y="48" width="126" height="22" rx="11" fill="#F57C00"/><text x="183" y="62" font-size="8" fill="#fff" text-anchor="middle">ເດືອນນີ້ขายดีไหม?</text>
-      <rect x="34" y="78" width="150" height="34" rx="11" fill="#FFF3E0"/><text x="42" y="92" font-size="8">ຍอดขาย 959,000 ກີບ 📈</text><text x="42" y="105" font-size="8">ດີຂຶ້ນ 12% ຈากเดือนก่อน</text>
-    </g>
-  </svg>
-  <h3>ຕັ້ງຄ່າ (ເທື່ອเดียว)</h3>
-  <ol class="steps">
-    <li>ໄປ <b>aistudio.google.com</b> → Get API Key (ຟຣີ)</li>
-    <li>ໃນແອັບ: ຕັ້ງຄ່າ → <b>AI</b> → ວາງ Key → เลือก ຮຸ່ນ</li>
-  </ol>
-  <h3>ໃຊ້ງານ</h3>
-  <ul class="dots">
-    <li>ໄປ ເມນູ → <b>ຜູ້ຊ່ວຍຮ້ານ AI</b> → ຖາມเป็นພາສາລາວໄດ້ເລີຍ</li>
-    <li>ຕົວຢ່າງ: "ສະมาชิກໃດแต้มมากสุด?", "เมนูใดกำไรดี?", "ค่าใช้จ่ายเดือนนี้?"</li>
-  </ul>
-  <div class="warn">⚠️ AI ໃຊ້ Key ຂອງเจ้าของร้านเอง (ຟຣีจาก Google) — ໝົดโควต้าฟรี/ມື້ ลองใหม่ภายหลัง</div>
-  <a class="top" href="#">↑ ກັບໄປສาລະບານ</a>
-</section>
-
-<section id="report">
-  <h2 class="sec">10 · ລາຍງານ & ຈັດການກະ</h2>
-  <svg class="ill" viewBox="0 0 280 110" xmlns="http://www.w3.org/2000/svg">
-    <rect x="20" y="8" width="240" height="94" rx="14" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <g font-family="'Noto Sans Lao',sans-serif">
-      <rect x="34" y="20" width="100" height="30" rx="8" fill="#FFF3E0"/><text x="44" y="34" font-size="8" fill="#9CA3AF">ຍอดขาย</text><text x="44" y="46" font-size="11" fill="#F57C00" font-weight="800">959,000</text>
-      <rect x="146" y="20" width="100" height="30" rx="8" fill="#E8F5E9"/><text x="156" y="34" font-size="8" fill="#9CA3AF">ກຳໄລ</text><text x="156" y="46" font-size="11" fill="#2E7D32" font-weight="800">+320,000</text>
-      <rect x="40" y="86" width="18" height="8" fill="#F57C00"/><rect x="64" y="76" width="18" height="18" fill="#F57C00"/><rect x="88" y="66" width="18" height="28" fill="#F57C00"/><rect x="112" y="78" width="18" height="16" fill="#F57C00"/><rect x="136" y="62" width="18" height="32" fill="#F57C00"/><rect x="160" y="72" width="18" height="22" fill="#F57C00"/>
-    </g>
-  </svg>
-  <ul class="dots">
-    <li><b>ລາຍງານ (📊 ມຸມເທິງ)</b> — ຍอดขาย, กำไร, เมนูขายดี, กราฟ + ดูใบบิลย้อนหลัง</li>
-    <li><b>ຈັດການກະ (Shift)</b> — ເปີดกะ ตอนเช้า / ปิดกะ ตอนปิดร้าน → นับเงินในลิ้นชัก</li>
-  </ul>
-  <a class="top" href="#">↑ ກັບໄປສาລະບານ</a>
-</section>
-
-<section id="staff">
-  <h2 class="sec">11 · ພະນັກງານ & ສາຂາ</h2>
-  <svg class="ill" viewBox="0 0 280 120" xmlns="http://www.w3.org/2000/svg">
-    <rect x="20" y="8" width="240" height="104" rx="14" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <g font-family="'Noto Sans Lao',sans-serif">
-      <rect x="34" y="20" width="212" height="26" rx="10" fill="#fff" stroke="#EFE6DC"/><circle cx="50" cy="33" r="9" fill="#FFF3E0"/><text x="50" y="37" font-size="9" text-anchor="middle">👑</text><text x="66" y="37" font-size="9" font-weight="700">Boss</text><rect x="180" y="26" width="58" height="14" rx="7" fill="#FFF3E0"/><text x="209" y="36" font-size="7" fill="#F57C00" text-anchor="middle">ເຈົ້າຂອງ</text>
-      <rect x="34" y="52" width="212" height="26" rx="10" fill="#fff" stroke="#EFE6DC"/><circle cx="50" cy="65" r="9" fill="#E6F1FB"/><text x="50" y="69" font-size="9" text-anchor="middle">👤</text><text x="66" y="69" font-size="9" font-weight="700">ນາງ ດາວ</text><rect x="180" y="58" width="58" height="14" rx="7" fill="#E6F1FB"/><text x="209" y="68" font-size="7" fill="#1E88E5" text-anchor="middle">ຜູ້ຈັດການ</text>
-      <rect x="34" y="84" width="212" height="22" rx="10" fill="#FFF3E0" stroke="#FFE0C2"/><text x="140" y="98" font-size="9" fill="#F57C00" text-anchor="middle" font-weight="700">＋ ເພີ່ມພະນັກງານ</text>
-    </g>
-  </svg>
-  <ol class="steps">
-    <li>ໄປ ເມນູ → <b>ຈັດການພະນັກງານ</b> → ກົດ ເພີ່ມພະນັກງານ</li>
-    <li>ໃສ່ ຊື່, ອີເມວ, ລະຫັດຜ່ານ, ຕຳແໜ່ງ → บันทึก</li>
-  </ol>
-  <div class="role">👤 <b>ຕຳແໜ່ງ:</b> &nbsp;<b>ເຈົ້າຂອງຮ້ານ</b> = ทำได้ทุกอย่าง &nbsp;·&nbsp; <b>ຜູ້ຈັດການ</b> = จัดการสินค้า/รายงาน/สต๊อก &nbsp;·&nbsp; <b>ພະນັກງານຂາຍ</b> = ขายอย่างเดียว</div>
-  <ul class="dots">
-    <li><b>ສาขา</b> — ໄປ ເມນູ → ສาขา → ເພີ່ມ/ສະຫຼັບສาขาที่กำลังขาย</li>
-  </ul>
-  <a class="top" href="#">↑ ກັບໄປສาລະບານ</a>
-</section>
-
-<section id="settings">
-  <h2 class="sec">12 · ຕັ້ງຄ່າ & ເຄື່ອງພິມ</h2>
-  <svg class="ill" viewBox="0 0 280 110" xmlns="http://www.w3.org/2000/svg">
-    <rect x="20" y="8" width="240" height="94" rx="14" fill="#fff" stroke="#EFE6DC" stroke-width="1.5"/>
-    <g font-family="'Noto Sans Lao',sans-serif">
-      <rect x="34" y="22" width="212" height="24" rx="8" fill="#FFF8F1"/><text x="44" y="38" font-size="9">🖨️ ເຄື່ອງພິມ Bluetooth</text><circle cx="232" cy="34" r="6" fill="#43A047"/>
-      <rect x="34" y="52" width="212" height="24" rx="8" fill="#FFF8F1"/><text x="44" y="68" font-size="9">🌙 ໂໝດມືດ</text>
-      <rect x="210" y="58" width="28" height="14" rx="7" fill="#F57C00"/><circle cx="231" cy="65" r="5" fill="#fff"/>
-    </g>
-  </svg>
-  <h3>ເຄື່ອງພິມ Bluetooth</h3>
-  <ol class="steps">
-    <li>ເປີດ Bluetooth ມືถือ + จับคู่กับเครื่องพิมพ์ก่อน</li>
-    <li>ໃນແອັບ: ຕັ້ງຄ່າ → <b>ເຄື່ອງພິມ Bluetooth</b> → เลือกเครื่อง → ทดสอบพิมพ์</li>
-    <li>ตั้งเครื่องครัวแยกได้ (ถ้ามี 2 เครื่อง)</li>
-  </ol>
-  <h3>ອື່ນໆ</h3>
-  <ul class="dots">
-    <li><b>ຮ້ານ & ໃບບິນ</b> — ใส่ ชื่อร้าน, ที่อยู่, เบอร์, โลโก้, QR โอนเงิน</li>
-    <li><b>ໂໝດມືດ (Dark mode)</b> · <b>ພาสา</b> · <b>ขนาดกระดาษ</b> (58/80mm)</li>
-  </ul>
-  <a class="top" href="#">↑ ກັບໄປສาລະບານ</a>
-</section>
-
-<section id="renew">
-  <h2 class="sec">13 · ການຕໍ່ອາຍຸ</h2>
-  <ul class="dots">
-    <li>ໝົດ 7 ມື້ ທົດລອງ → ໜ້າຈໍຈະໃຫ້ <b>ຕໍ່ອາຍຸ</b></li>
-    <li>ກົດ <b>ຊື້/ຕໍ່ອາຍຸ ຜ່ານ WhatsApp</b> → ຕິดต่อ + ชำระ → ໃຊ້ຕໍ່ໄດ້ 1 ປີ</li>
-    <li>ຂໍ້ມູນຢູ່ Cloud — ໝົดอายุก็ไม่หาย, ต่ออายุแล้วใช้ต่อได้ทันที</li>
-  </ul>
-  <a class="top" href="#">↑ ກັບໄປສาລະບານ</a>
-</section>
-
-<div class="footer">
-  📞 ຕ້ອງการช่วยเหลือ? ຕິດຕໍ່ <a href="https://wa.me/8562095524699" target="_blank">WhatsApp: 020 9552 4699</a><br>
-  <span style="font-size:12px;">© 2026 Annie KaiyDee POS · NDesign Creative Studio</span>
-</div>
-
-</div>
-</body>
-</html>
+<footer>
+  <div class="wrap">
+    <div>📘 <b>Annie KaiyDee POS</b> · ຄູ່ມືການໃຊ້ງານ v2.30 · ອັບເດດ 2026</div>
+    <div>ສอบถาม/ຊ่วยเหลือ → ທັກມາໄດ້ເລີຍ</div>
+  </div>
+</footer>
+</body></html>
