@@ -1,0 +1,9 @@
+# ບໍ່ຕ້ອງເອົາໄຟລ໌ຕິດຕັ້ງເຂົ້າ repo ອີກແລ້ວ
+# ໜ້າດາວໂຫຼດຊີ້ໄປ GitHub Releases (releases/latest/download/...) ແທນ
+# ເຫດຜົນ: ອັບ APK/EXE ທຸກເທື່ອທີ່ປ່ອຍເວີຊັນ = repo ໃຫຍ່ຂຶ້ນເລື້ອຍໆ
+#         ຈົນ git fetch ແບບເຕັມຄ້າງ/ພັງ (ຕ້ອງໃຊ້ --depth=1)
+*.apk
+*.exe
+*.zip
+*.aab
+*.msix
